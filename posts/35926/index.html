@@ -12,7 +12,7 @@
 
 
 
-<title>Line Notify 處理服務綁定的套件 | Hexo</title>
+<title>以 CSS 實作圖片等比例縮放 | Hexo</title>
 
 
 
@@ -160,7 +160,7 @@
 </script>  
   <article class="post-wrap">
     <header class="post-header">
-      <h1 class="post-title">Line Notify 處理服務綁定的套件</h1>
+      <h1 class="post-title">以 CSS 實作圖片等比例縮放</h1>
       
       <div class="post-meta">
          Author:
@@ -168,52 +168,45 @@
          
         <span class="post-time">
           Date:
-          <a href="#">July 19, 2021&nbsp;&nbsp;11:31:35</a>
+          <a href="#">August 5, 2021&nbsp;&nbsp;1:58:13</a>
         </span>
          
-        <span class="post-category">
-          Category: 
-          <a href="/categories/Portfolio/">Portfolio</a>
-          
-        </span>
-        
       </div>
       
     </header>
 
-    <div class="post-content"><h1 id="相關連結"><a href="#相關連結" class="headerlink" title="相關連結"></a>相關連結</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@dahisc/line-notify">NPM</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/DahisC/line-notify">Github Repository</a></li>
-</ul>
-<h1 id="關於此作品"><a href="#關於此作品" class="headerlink" title="關於此作品"></a>關於此作品</h1><blockquote>
-<p>這個作品主要是當時在撰寫 <a href="https://dahisc.github.io/posts/63534/">水藍嗶啵鼠</a> 時要接 Line Notify 的過程中有很多設定與文件要看，後來乾脆索性自己開發一個套件專門解決這件事情，就像用 Node.js 中的 Passport 一樣；主要是解決將使用者與服務綁定的中間這段 Oauth 2 的認證過程。</p>
-</blockquote>
-<ul>
-<li>2020/7 開發完成</li>
-<li>主要使用了 express 中的路由功能實作，使用者只須引入套件後填入以下欄位即可串接服務<ol>
-<li> client_id</li>
-<li> client_secret,</li>
-<li> succeeded_route,</li>
-<li> failed_route,</li>
-</ol>
-</li>
-</ul>
-<h1 id="使用技術"><a href="#使用技術" class="headerlink" title="使用技術"></a>使用技術</h1><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">技術／套件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">後端框架</td>
-<td align="center">Node.js + express</td>
-</tr>
-<tr>
-<td align="center">部署環境</td>
-<td align="center">NPM</td>
-</tr>
-</tbody></table>
+    <div class="post-content"><h1 id="一些基本觀念"><a href="#一些基本觀念" class="headerlink" title="一些基本觀念"></a>一些基本觀念</h1><p>在 HTML 中，圖片以 <code>&lt;img&gt;</code> 標籤載入至頁面中後，會預設以圖片原始尺寸的寬高出現，這是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/Replaced_element">置換元素 Replaced element</a> 的特性之一</p>
+<p>而 <code>&lt;img&gt;</code> 還有另一個特性是：如果我們只設定寬<strong>或</strong>高其中一項，則另一項就會按照圖片的原始比例縮放</p>
+<p>假如有一張圖片原本是寬 200px * 高 100px，這時候我們如果透過 CSS 重新指定圖片的高度為 25px，則寬度就會依照原本的比例變為 50px</p>
+<p>善用這個特性就能讓圖片在縮放的同時也保有自身的原始比例</p>
+<hr>
+<h1 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h1><p>直接上程式碼！！！</p>
+<p>建議點選右上角的「EDIT ON CODEPEN」預覽 ^.&lt;</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="等比例縮放圖片" src="https://codepen.io/DahisC/embed/RwKPGyz?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/RwKPGyz'>等比例縮放圖片</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<p>圖片等比例縮放－－這個效果在現今網站越做越精緻、RWD 變成每個前端工程師被動技能的年代，已經是一項沒辦法再隨便呼嚨過去的課題！！</p>
+<p>以往總是將圖片直接設百分比卻從未了解其中的差異，在將各種縮放方法整理出來之後就清楚許多</p>
+<p>接下來就以文字敘述搭配 Codepen 上的程式碼解說其中的差異～</p>
+<h2 id="原始尺寸"><a href="#原始尺寸" class="headerlink" title="原始尺寸"></a>原始尺寸</h2><p>主管現在要求你放一張 200px*100px 尺寸的圖片，但你也別真的就這樣放上去，不然主管等等還會找你</p>
+<h2 id="width-20"><a href="#width-20" class="headerlink" title="width: 20%"></a>width: 20%</h2><p>有點經驗的前端工程師會立刻將圖片設定 <code>width: 20%</code>，圖片這時候就能輕易地做到隨著螢幕寬度縮放，也就是俗稱的 RWD</p>
+<p>BUT！！！</p>
+<p>如果今天使用者使用一台 Full HD (1920px*1080px) 的螢幕觀看這張圖片會發生什麼事情？</p>
+<p>原本寬度只有 200px 的圖片，硬是被拉伸至螢幕寬度的 20%，也就是 1920px*20% = 384px</p>
+<p>足足把圖片放大了一倍，前端工程師跟老家的阿嬤沒兩樣，很怕圖片沒吃飽</p>
+<p>大部分的圖片都是點陣式圖片而非向量圖，只要寬度在超出原本的 200px 繼續向上伸展後，圖片只會變得越來越模糊</p>
+<p>這時候該怎麼辦？</p>
+<h2 id="width-15-625vw"><a href="#width-15-625vw" class="headerlink" title="width: 15.625vw"></a>width: 15.625vw</h2><p>先解釋一下 15.625 這數字是怎麼跑出來的</p>
+<p>將圖片的原始寬度 200px / 1280px = 0.15625<br>如果是以 Full HD 螢幕計算，就是 200px / 1920px = 0.10416</p>
+<p>計算這個的用意是圖片在 1280px 寬度的情況時，圖片的大小應該會佔據螢幕的 15.625%，而在 1920px 時，只會佔據 10.416%</p>
+<p>根據式子反推驗證，我們將 1280px * 15.625% 就會得到 200px，1920px * 10.416% 也會是 200px</p>
+<p>意思是螢幕會在除數（1280px 或 1920px）的解析度下才開始依照自身比例縮放，而不像 <code>width: 20%</code> 從頭到尾都佔據螢幕寬度的 20%</p>
+<p>如此一來，假如以現在最為普及的 Full HD 螢幕解析度 1920px 來看，大部分使用者在看到這張圖片時都不會看到它被拉伸超過自身寬度而導致模糊的情況</p>
+<p>但在超過設定的解析度時，依然還是無法避免寬度被拉伸的結果</p>
+<h2 id="width-15-625"><a href="#width-15-625" class="headerlink" title="width: 15.625%"></a>width: 15.625%</h2><p>跟上面一樣，但 vw 與 % 的差別就在於如果網站上出現了直向的捲軸，vw 不會扣除捲軸的寬度，而 % 會</p>
+<h2 id="padding-的奇怪方法"><a href="#padding-的奇怪方法" class="headerlink" title="padding 的奇怪方法"></a>padding 的奇怪方法</h2><p>待補</p>
 </div>
 
     
@@ -221,7 +214,7 @@
        
       <p class="copyright-item">
         <span>Permalink:</span>
-        <span><a href="https://dahisc.github.io/posts/63538/">https://dahisc.github.io/posts/63538/</a></span>
+        <span><a href="https://dahisc.github.io/posts/35926/">https://dahisc.github.io/posts/35926/</a></span>
       </p>
         
     </section>
@@ -230,7 +223,9 @@
       <div>
         <!-- <span>Tag(s):</span> -->
         <span class="tag">
-          
+           
+          <a href="/tags/CSS/"># CSS</a>
+           
         </span>
       </div>
       <div>
@@ -241,9 +236,9 @@
     </section>
     <section class="post-nav">
       
-      <a class="prev" rel="prev" href="/posts/35926/">以 CSS 實作圖片等比例縮放</a>
+      <a class="prev" rel="prev" href="/posts/10023/">Float & Clear</a>
        
-      <a class="next" rel="next" href="/posts/63537/">The F2E 2nd 第十關 - 聊天室</a>
+      <a class="next" rel="next" href="/posts/63538/">Line Notify 處理服務綁定的套件</a>
       
     </section>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />

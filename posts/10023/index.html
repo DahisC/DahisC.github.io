@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>Float &amp; Clear | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">Float &amp; Clear</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">August 5, 2021&nbsp;&nbsp;3:30:09</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="屬性"><a href="#屬性" class="headerlink" title="屬性"></a>屬性</h1><h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2><blockquote>
+<p>使用 <code>float</code> 時先想像網頁上多出了 Z 軸，而被套用 <code>float</code> 屬性的元素則會<strong>往上漂浮</strong>，這時的元素會被區分成上層（漂浮元素）與下層（未套用 <code>float</code> 的元素），在未使用 <code>clear</code> 屬性時，上層與下層元素之間的排版不會互相影響。</p>
+</blockquote>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="DahisC" data-slug-hash="poNGLPB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Float 切版練習預設模板">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/DahisC/pen/poNGLPB">
+  Float 切版練習預設模板</a> by DahisC (<a target="_blank" rel="noopener" href="https://codepen.io/DahisC">@DahisC</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h2><blockquote>
+<p><code>clear</code> 屬性會忽略上方（HTML 的撰寫順序）<em>同邊元素</em>的漂浮效果，意思就是 <code>clear: left</code> 就會忽略 <code>float: left</code>，使元素在碰到<strong>第一個</strong>同邊元素後停止。</p>
+</blockquote>
+<iframe height="265" style="width: 100%;" scrolling="no" title="clear 屬性" src="https://codepen.io/DahisC/embed/OJbdvQw?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/OJbdvQw'>clear 屬性</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h1 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h1><p>以下列程式碼作為基礎模板，嘗試以 CSS 屬性 <code>float</code> 與 <code>clear</code> 練習切版。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="jOVdzrX" src="https://codepen.io/DahisC/embed/jOVdzrX?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/jOVdzrX'>jOVdzrX</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="切版練習-1"><a href="#切版練習-1" class="headerlink" title="切版練習 1"></a>切版練習 1</h2><p><img src="/layout_1.jpg" alt="切版練習 1"></p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Float 切版練習 1" src="https://codepen.io/DahisC/embed/MWbLVyR?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/MWbLVyR'>Float 切版練習 1</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="切版練習-2"><a href="#切版練習-2" class="headerlink" title="切版練習 2"></a>切版練習 2</h2><p><img src="/layout_2.jpg" alt="切版練習 2"></p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Float 切版練習 2" src="https://codepen.io/DahisC/embed/WNoPzGa?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/WNoPzGa'>Float 切版練習 2</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="切版練習-3"><a href="#切版練習-3" class="headerlink" title="切版練習 3"></a>切版練習 3</h2><p><img src="/layout_3.jpg" alt="切版練習 3"></p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Float 切版練習 3" src="https://codepen.io/DahisC/embed/RwovMoZ?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/RwovMoZ'>Float 切版練習 3</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="切版練習-4"><a href="#切版練習-4" class="headerlink" title="切版練習 4"></a>切版練習 4</h2><p><img src="/layout_4.jpg" alt="切版練習 4"></p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Float 切版練習 4" src="https://codepen.io/DahisC/embed/bGBzvBj?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/DahisC/pen/bGBzvBj'>Float 切版練習 4</a> by DahisC
+  (<a target="_blank" rel="noopener" href='https://codepen.io/DahisC'>@DahisC</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="切版練習-5"><a href="#切版練習-5" class="headerlink" title="切版練習 5"></a>切版練習 5</h2><p><img src="/layout_5.jpg" alt="切版練習 5"></p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="DahisC" data-slug-hash="MWbLqXm" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Float 切版練習 5">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/DahisC/pen/MWbLqXm">
+  Float 切版練習 5</a> by DahisC (<a target="_blank" rel="noopener" href="https://codepen.io/DahisC">@DahisC</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="切版練習-6"><a href="#切版練習-6" class="headerlink" title="切版練習 6"></a>切版練習 6</h2><p>延續練習 5，但在不同顏色的區塊之間加入 10 px 的間距。（以 padding 與 margin 實作）</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="DahisC" data-slug-hash="mdOoywa" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Float 切版練習 5">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/DahisC/pen/mdOoywa">
+  Float 切版練習 5</a> by DahisC (<a target="_blank" rel="noopener" href="https://codepen.io/DahisC">@DahisC</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<ul>
+<li>注意事項：<ul>
+<li>margin 的套用順序以 HTML 的撰寫順序為主，由前推後（上推下）<ul>
+<li>header 推 main、mainL 推 mainR、main 推 footer</li>
+</ul>
+</li>
+<li>padding 會將原本的容器撐開，所以需要在容器原本的長寬上扣除 padding 的值<ul>
+<li>假設原本為 800*600，在下 <code>padding: 10px</code> 之後則為 780*580</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="切版練習-7"><a href="#切版練習-7" class="headerlink" title="切版練習 7"></a>切版練習 7</h2><p>延續練習 6，但將尺寸設定為 1024*768，並將間距改為 20px。</p>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="DahisC" data-slug-hash="qBqvOwm" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="float 切版練習 7">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/DahisC/pen/qBqvOwm">
+  float 切版練習 7</a> by DahisC (<a target="_blank" rel="noopener" href="https://codepen.io/DahisC">@DahisC</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/10023/">https://dahisc.github.io/posts/10023/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/CSS/"># CSS</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/10024/">JS 中那些關於 truthy 與 falsy 值的觀念</a>
+       
+      <a class="next" rel="next" href="/posts/35926/">以 CSS 實作圖片等比例縮放</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
