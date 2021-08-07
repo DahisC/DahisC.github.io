@@ -1,5 +1,5 @@
 ---
-title: The F2E 2nd 第十關 - 聊天室
+title: The F2E 2nd 第七關 - 聊天室
 abbrlink: 63537
 date: 2021-07-18 02:35:44
 tags:
@@ -31,3 +31,12 @@ category:
 | 後端框架 |    Nuxt    |
 | 傳輸套件 | Socket.IO  |
 | 部署環境 |   Heroku   |
+
+# 實際畫面
+
+![](login.png)
+![](m_login.png)
+![](chatting_f.png)
+![](chatting_b.png)
+![](m_chatting_f.png)
+![](m_chatting_b.png)
