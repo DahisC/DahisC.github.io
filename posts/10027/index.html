@@ -12,7 +12,7 @@
 
 
 
-<title>瀏覽器中頁面的生命週期 | Hexo</title>
+<title>（筆記）JavaScript 全攻略：克服 JS 的奇怪部分 | Hexo</title>
 
 
 
@@ -160,7 +160,7 @@
 </script>  
   <article class="post-wrap">
     <header class="post-header">
-      <h1 class="post-title">瀏覽器中頁面的生命週期</h1>
+      <h1 class="post-title">（筆記）JavaScript 全攻略：克服 JS 的奇怪部分</h1>
       
       <div class="post-meta">
          Author:
@@ -168,44 +168,28 @@
          
         <span class="post-time">
           Date:
-          <a href="#">August 9, 2021&nbsp;&nbsp;13:12:21</a>
+          <a href="#">August 10, 2021&nbsp;&nbsp;15:48:34</a>
         </span>
          
       </div>
       
     </header>
 
-    <div class="post-content"><h1 id="頁面的生命週期"><a href="#頁面的生命週期" class="headerlink" title="頁面的生命週期"></a>頁面的生命週期</h1><p>在瀏覽器中，從使用者打開頁面到離開頁面的過程會經歷下述四個事件，分別為：</p>
-<ol>
-<li>DOMContentLoaded - DOM 掛載至頁面中</li>
-<li>load - 除了 DOM 之外，<code>&lt;img&gt;</code>, <code>&lt;style&gt;</code> 等已被載入（不包含<code>&lt;script&gt;</code>）</li>
-<li>beforeunload - 使用者按下關閉頁面</li>
-<li>unload - 使用者已關閉頁面</li>
-</ol>
-<h2 id="DOMContentLoaded"><a href="#DOMContentLoaded" class="headerlink" title="DOMContentLoaded"></a>DOMContentLoaded</h2><blockquote>
-<p><code>DOMContentLoaded</code> 事件會在<strong>所有</strong> DOM 已被掛載至頁面後觸發，但在這階段時還不包含外部引入的檔案，像是透過 <code>&lt;style&gt;</code> 引入的樣式檔以及 <code>&lt;img&gt;</code> 的圖片檔，也就是說在這階段很可能只會看到網頁原始不包含任何樣式的樣貌，但已經可以透過 JavaScript 操作 DOM，因為此時 DOM 已經被掛載至頁面中。</p>
-</blockquote>
-<blockquote>
-<p>比較特別的是，在這階段如果 <code>&lt;body&gt;</code> 標籤的「中間」包含了一個 <code>&lt;script&gt;</code> 標籤，則瀏覽器會停下來先執行 <code>&lt;script&gt;</code> 標籤內部的程式碼或者請求檔案（如果 <code>&lt;script&gt;</code> 擁有 <code>src</code> 屬性）後再繼續執行 DOM 的生成。</p>
-<p>上述情況有兩個例外：</p>
-<ol>
-<li><code>&lt;script async&gt;</code></li>
-<li>以 JavaScript 的 createElement 方法插入的 <code>&lt;script&gt;</code></li>
-</ol>
-</blockquote>
-<h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><blockquote>
-<p><code>load</code> 會在頁面被完整繪製時觸發，其中也包含樣式檔以及圖片檔等等，在 <code>load</code> 之後的畫面就相當於要呈現給使用者的最終畫面，也是常用的 <code>window.onload</code> 的觸發階段。</p>
-</blockquote>
-<h2 id="beforeunload"><a href="#beforeunload" class="headerlink" title="beforeunload"></a>beforeunload</h2><blockquote>
-<p><code>beforeunload</code> 事件會在使用者離開頁面時觸發（也就是已經按下了關閉分頁的 X 但尚未關閉分頁時）；一般會在這個階段詢問使用者是否要關閉分頁等等，讓使用者有最後反悔的機會。</p>
-</blockquote>
-<h2 id="unload"><a href="#unload" class="headerlink" title="unload"></a>unload</h2><blockquote>
-<p><code>unload</code> 事件會在使用者離開頁面<em>後</em>觸發，一般會在這個階段送出頁面的統計數據，但由於一般的 <code>XMLHttpRequest</code> 預設是異步模式，所以如果在此事件中使用異步的請求通常會被瀏覽器忽略，因為在執行時使用者已經關閉了頁面（也就相當於停止執行頁面上的 JavaScript），所以需要將 <code>XMLHttpRequest</code> 的 <code>open()</code> 方法第三個引數填入 <code>true</code> 開啟異步模式，就可以確保使用者在觸發此事件時先等待請求的結果後才關閉頁面；然而這個方式可能會導致使用者離開頁面的動作被暫時停止，因為同步執行的請求會阻塞使用者離開頁面的事件。<br>取而代之的是，如果透過 <code>navigator.sendBeacon()</code> 則是以異步的方式送出請求，卻又確保了能夠執行請求並不會阻塞使用者的離開頁面事件。</p>
-</blockquote>
-<h1 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h1><ol>
-<li><a target="_blank" rel="noopener" href="https://javascript.info/onload-ondomcontentloaded">Page: DOMContentLoaded, load, beforeunload, unload</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon">(MDN) Navigator.sendBeacon()</a></li>
-</ol>
+    <div class="post-content"><h1 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h1><ul>
+<li>在創造階段時，JavaScript 會先將所有變數的宣告放進記憶體，接著賦予 undefined 這個特殊的值</li>
+<li>undefined 應該被視為你沒有賦予這個值變數，所以不主動將 undefined 賦值給變數有助於排除錯誤</li>
+</ul>
+<h1 id="關於-JavaScript"><a href="#關於-JavaScript" class="headerlink" title="關於 JavaScript"></a>關於 JavaScript</h1><ul>
+<li>單執行緒 Single Threaded<ul>
+<li>一次只執行一個指令</li>
+</ul>
+</li>
+<li>同步 Synchronous<ul>
+<li>程式碼依照出現的順序，一次只執行一行</li>
+</ul>
+</li>
+</ul>
+<h1 id="Execution-Stack"><a href="#Execution-Stack" class="headerlink" title="Execution Stack"></a>Execution Stack</h1><p><img src="/posts/10027/1.png"></p>
 </div>
 
     
@@ -213,7 +197,7 @@
        
       <p class="copyright-item">
         <span>Permalink:</span>
-        <span><a href="https://dahisc.github.io/posts/15719/">https://dahisc.github.io/posts/15719/</a></span>
+        <span><a href="https://dahisc.github.io/posts/10027/">https://dahisc.github.io/posts/10027/</a></span>
       </p>
         
     </section>
@@ -222,9 +206,7 @@
       <div>
         <!-- <span>Tag(s):</span> -->
         <span class="tag">
-           
-          <a href="/tags/Browser/"># Browser</a>
-           
+          
         </span>
       </div>
       <div>
@@ -234,10 +216,8 @@
       </div>
     </section>
     <section class="post-nav">
-      
-      <a class="prev" rel="prev" href="/posts/10027/">（筆記）JavaScript 全攻略：克服 JS 的奇怪部分</a>
        
-      <a class="next" rel="next" href="/posts/65221/">HTML 常見問題</a>
+      <a class="next" rel="next" href="/posts/15719/">瀏覽器中頁面的生命週期</a>
       
     </section>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
