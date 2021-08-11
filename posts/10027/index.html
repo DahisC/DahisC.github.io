@@ -175,11 +175,12 @@
       
     </header>
 
-    <div class="post-content"><h1 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h1><ul>
+    <div class="post-content"><h1 id="詞彙環境-Lexical-Environment"><a href="#詞彙環境-Lexical-Environment" class="headerlink" title="詞彙環境 Lexical Environment"></a>詞彙環境 Lexical Environment</h1><p>程式碼被實際撰寫的位置，而撰寫的位置則會影響 Scope Chain；在 JavaScript 中，重要的不是撰寫的上下順序，而是變數的位置之外是否有被函式包住</p>
+<h1 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h1><ul>
 <li>在創造階段時，JavaScript 會先將所有變數的宣告放進記憶體，接著賦予 undefined 這個特殊的值</li>
 <li>undefined 應該被視為你沒有賦予這個值變數，所以不主動將 undefined 賦值給變數有助於排除錯誤</li>
 </ul>
-<h1 id="關於-JavaScript"><a href="#關於-JavaScript" class="headerlink" title="關於 JavaScript"></a>關於 JavaScript</h1><ul>
+<h1 id="關於-JavaScript-的引擎"><a href="#關於-JavaScript-的引擎" class="headerlink" title="關於 JavaScript 的引擎"></a>關於 JavaScript 的引擎</h1><ul>
 <li>單執行緒 Single Threaded<ul>
 <li>一次只執行一個指令</li>
 </ul>
@@ -189,7 +190,50 @@
 </ul>
 </li>
 </ul>
-<h1 id="Execution-Stack"><a href="#Execution-Stack" class="headerlink" title="Execution Stack"></a>Execution Stack</h1><p><img src="/posts/10027/1.png"></p>
+<h1 id="執行堆-Execution-Stack"><a href="#執行堆-Execution-Stack" class="headerlink" title="執行堆 Execution Stack"></a>執行堆 Execution Stack</h1><p><img src="/posts/10027/1.png"></p>
+<ul>
+<li>堆疊結構（先進後出）</li>
+<li>最下層的會是全域執行環境 Global Execution Context</li>
+<li>每次呼叫函式，JavaScript 就會創造一個專屬於該函式的 Exection Context 並放進 Exection Stack 中</li>
+</ul>
+<h1 id="範疇-Scope"><a href="#範疇-Scope" class="headerlink" title="範疇 Scope"></a>範疇 Scope</h1><blockquote>
+<p>變數可以被取用的範圍（像是函式中宣告的變數，可以在此函式以內被使用）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(v); <span class="comment">// 1: 變數在範疇之中</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v); <span class="comment">// Reference Error: 變數不在範疇之中</span></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
+
+<h1 id="範疇鍊-Scope-Chain"><a href="#範疇鍊-Scope-Chain" class="headerlink" title="範疇鍊 Scope Chain"></a>範疇鍊 Scope Chain</h1><blockquote>
+<p>變數可以被取用的所有範圍（向外尋找；如果一個）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v); <span class="comment">// 1: 雖然在 B() 的範疇中未找到 v，但外層的 A 函式也屬於 B 函式的範疇鍊，所以印出 1</span></span><br><span class="line">  &#125;</span><br><span class="line">  B();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v); <span class="comment">// Reference Error: 變數不在範疇之中</span></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
+
+<h1 id="瀏覽器的引擎與底層運作方式"><a href="#瀏覽器的引擎與底層運作方式" class="headerlink" title="瀏覽器的引擎與底層運作方式"></a>瀏覽器的引擎與底層運作方式</h1><blockquote>
+<p>在瀏覽器中，處理 JavaScript 的引擎是以<strong>同步</strong>的方式處理所有指令，然而瀏覽器也能觸發非同步回呼的函式（Asynchornous callbacks），原因是因為除了有引擎在處理 JavaScript 以外，也同時有其它引擎在處理其它部分，像是繪製（或渲染 Rendering）、HTTP 請求，這些都與 JavaScript 分屬不同的引擎，而透過 JavaScript 執行這些請求時，就相當於將做這些事情的控制權交到這些引擎手中。</p>
+</blockquote>
+<h1 id="JavaScript-如何處理非同步事件"><a href="#JavaScript-如何處理非同步事件" class="headerlink" title="JavaScript 如何處理非同步事件"></a>JavaScript 如何處理非同步事件</h1><blockquote>
+<p>JavaScript 使用一個稱為事件佇列（event queue）的方式同步地處理非同步的這些事件，且當 JavaScript 本身的執行堆中都處理完畢時，才會將事件佇列的事件放進執行堆中執行。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// long running function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitThreeSeconds</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ms = <span class="number">3000</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span>() &lt; ms)&#123;&#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;finished function&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;click event!&#x27;</span>);   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// listen for the click event</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>, clickHandler);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">waitThreeSeconds(); <span class="comment">// 這邊觸發的函式，會先被放入執行堆中</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;finished execution&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>按照範例，我們在 document 上加入了一個點擊事件的監聽器，並且在打開網頁時會先觸發 <code>waitThreeSeconds()</code> 函式，同時在 <code>waitThreeSeconds()</code> 卡住渲染引擎的同時，點擊一次按鈕，這時候的引擎狀態應該如下： </p>
+<ul>
+<li><p>執行堆</p>
+<ul>
+<li><code>waitThreeSeconds()</code></li>
+<li><code>Global</code></li>
+</ul>
+</li>
+<li><p>事件佇列</p>
+<ul>
+<li><code>clickHandler()</code></li>
+</ul>
+</li>
+</ul>
+<p>這時候打開瀏覽器，會發現控制台以下面的順序印出文字：</p>
+<ol>
+<li>finished function -&gt; 來自 <code>waitThreeSeconds()</code> 函式，執行堆中的最上層</li>
+<li>finished execution -&gt; 來自全域，執行堆中的最下層</li>
+<li>click event! -&gt; 來自事件佇列的 <code>clickHandler()</code>，當 1. 與 2. 從執行堆中離開時，它會被放到執行堆中</li>
+</ol>
 </div>
 
     
@@ -216,6 +260,8 @@
       </div>
     </section>
     <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/10028/">我真的懂 webpack 嗎？</a>
        
       <a class="next" rel="next" href="/posts/15719/">瀏覽器中頁面的生命週期</a>
       
