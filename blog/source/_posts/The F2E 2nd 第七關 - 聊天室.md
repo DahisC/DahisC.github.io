@@ -7,12 +7,10 @@ category:
   - Portfolio
 ---
 
-> Heroku 看起來修改了 API 在其網域內的呼叫方式，專案暫時無法執行 QQ
-
 # 相關連結
 
 - [Github Repository](https://github.com/DahisC/chatroom)
-- [作品網址 (Heroku)](http://dahisc-chatroom.herokuapp.com/)
+- [作品網址 (Heroku)](https://dahisc-chatroom.herokuapp.com/)
 - [設計稿](https://www.behance.net/gallery/84720235/THE-F2E-7-UI)
 
 # 關於此作品

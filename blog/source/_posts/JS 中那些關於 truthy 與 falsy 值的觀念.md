@@ -3,6 +3,7 @@ title: JS 中那些關於 truthy 與 falsy 值的觀念
 abbrlink: 10024
 date: 2021-08-05 05:21:24
 tags:
+  - JavaScript
 ---
 
 最近在看犀牛書時發現幾個以前沒辦法理解的觀念，趁還沒忘記在這邊紀錄一下！！

@@ -1,6 +1,7 @@
 ---
 title: 以 CSS 實作圖片等比例縮放
-tags: CSS
+tags:
+  - CSS
 abbrlink: 35926
 date: 2021-08-05 01:58:13
 ---
