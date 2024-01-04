@@ -158,7 +158,7 @@ return computed<P[K]>({
 })
 ```
 
-其實到這邊已經算是很方便了，我們工程師只需要安裝一個框架再引入 useVModel 再定義 `props` 跟 `emit` 就可以重新建立雙向綁定。
+其實到這邊已經算是很方便了，我們工程師只需要安裝一個函式庫再引入 useVModel 再定義 `props` 跟 `emit` 就可以重新建立雙向綁定。
 
 ## 方法四 - Vue 原生的 defineModel
 
