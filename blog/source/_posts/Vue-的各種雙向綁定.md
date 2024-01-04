@@ -150,10 +150,10 @@ tags:
 ```js
 return computed<P[K]>({
     get() {
-    return getValue()!
+        return getValue()!
     },
     set(value) {
-    triggerEmit(value)
+        triggerEmit(value)
     },
 })
 ```
