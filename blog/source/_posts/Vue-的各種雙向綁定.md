@@ -65,20 +65,20 @@ tags:
 </template>
 
 <script setup lang="ts">
-    interface Props {
-        modelValue: string;
-    }
+interface Props {
+    modelValue: string;
+}
 
-    interface Emits {
-        (e: 'update:model-value', value: string): void;
-    }
+interface Emits {
+    (e: 'update:model-value', value: string): void;
+}
 
-    const props = defineProps<Props>();
-    const emit = defineEmits<Emits>();
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-    const onInput = (e: any) => { // 這邊的 e 請允許我先用 any
-        emit('update:model-value', e.target.value);
-    }
+const onInput = (e: any) => { // 這邊的 e 請允許我先用 any
+    emit('update:model-value', e.target.value);
+}
 </script>
 ```
 
@@ -97,25 +97,27 @@ tags:
 </template>
 
 <script setup lang="ts">
-    interface Props {
-        modelValue: string;
-    }
+import { computed } from 'vue';
 
-    interface Emits {
-        (e: 'update:model-value', value: string): void;
-    }
+interface Props {
+    modelValue: string;
+}
 
-    const props = defineProps<Props>();
-    const emit = defineEmits<Emits>();
+interface Emits {
+    (e: 'update:model-value', value: string): void;
+}
 
-    const input = computed({
-        get() {
-            return props.modelValue;
-        },
-        set(value: string) {
-            emit('update:model-value', value);
-        },
-    });
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const input = computed({
+    get() {
+        return props.modelValue;
+    },
+    set(value: string) {
+        emit('update:model-value', value);
+    },
+});
 </script>
 ```
 
@@ -130,18 +132,20 @@ tags:
 </template>
 
 <script setup lang="ts">
-    interface Props {
-        modelValue: string;
-    }
+import { useVModel } from '@vueuse/core';
 
-    interface Emits {
-        (e: 'update:model-value', value: string): void;
-    }
+interface Props {
+    modelValue: string;
+}
 
-    const props = defineProps<Props>();
-    const emit = defineEmits<Emits>();
+interface Emits {
+    (e: 'update:model-value', value: string): void;
+}
 
-    const input = useVModel(props, 'modelValue', emit);
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const input = useVModel(props, 'modelValue', emit);
 </script>
 ```
 
@@ -160,6 +164,8 @@ return computed<P[K]>({
 
 其實到這邊已經算是很方便了，我們工程師只需要安裝一個函式庫再引入 useVModel 再定義 `props` 跟 `emit` 就可以重新建立雙向綁定。
 
+人要知足。
+
 ## 方法四 - Vue 原生的 defineModel
 
 欸？？？？？
@@ -173,7 +179,9 @@ return computed<P[K]>({
 </template>
 
 <script setup lang="ts">
-    const input = defineModel();
+import { defineModel } from 'vue';
+
+const input = defineModel();
 </script>
 ```
 
