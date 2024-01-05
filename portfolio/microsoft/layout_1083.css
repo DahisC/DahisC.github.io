@@ -1,0 +1,12 @@
+@media (max-width: 1083px) {
+  header,
+  section.img-section {
+    width: 100%;
+  }
+  .card {
+    width: 50%;
+  }
+  .footer-top > div {
+    width: calc(100% / 3);
+  }
+}

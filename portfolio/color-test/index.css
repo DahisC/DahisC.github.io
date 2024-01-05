@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+
+:root {
+    --tile-color: rgb(0, 0, 0);
+    --score: 1;
+    --level: 2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, Noto Sans TC;
+    overflow: hidden;
+}
+
+/* .container */
+
+.container {
+    background-color: #f06060;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container > header {
+    box-sizing: initial;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.container > main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* header */
+
+header > div {
+    width: 100px;
+    text-align: center;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    color: #f06060;
+    font-weight: bold;
+    user-select: none;
+}
+
+header > div > span {
+    padding-left: 5px;
+}
+
+header > .score {
+    border-radius: 20% 20% 60% 20%;
+}
+
+header > .timer {
+    border-radius: 20% 20% 80% 80%;
+    transition: color 0.5s linear;
+}
+
+header > .pause-btn {
+    border-radius: 20% 20% 20% 60%;
+    cursor: pointer;
+}
+
+header > .pause-btn:hover {
+    box-shadow: antiquewhite 0 0 5px 1px;
+}
+
+header > .pause-btn:active {
+    transform: translateY(2px);
+}
+
+/* main */
+
+main > .gameboard {
+    width: 80vh;
+    height: 80vh;
+    padding: 10px;
+    background-color: #dddddd;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+main > .gameboard > .tile {
+    height: calc(100% / var(--level) - 10px);
+    width: calc(100% / var(--level) - 10px);
+    background-color: var(--tile-color);
+    margin: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+}
+
+main > .gameboard > .tile:hover {
+    animation: selecting 1.5s infinite linear;
+}
+
+main > .gameboard > .tile.special {
+    opacity: calc(0.5 + calc(var(--score) / 200));
+}
+
+/* Pausing State */
+
+.pausing .timer {
+    color: lightskyblue;
+}
+
+.pausing i.fa-pause {
+    display: none;
+}
+i.fa-pause {
+    display: inline;
+}
+.pausing i.fa-play {
+    display: inline;
+}
+i.fa-play {
+    display: none;
+}
+
+/* Animation */
+
+.fa-star {
+    animation-name: spinning;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes spinning {
+    60% {
+        transform: rotate3d(0, 1, 0, 0turn);
+    }
+    100% {
+        transform: rotate3d(0, 1, 0, 3turn);
+    }
+}
+
+@keyframes selecting {
+    0% {
+        border-color: #f06060;
+    }
+    50% {
+        border-color: transparent;
+    }
+    100% {
+        border-color: #f06060;
+    }
+}
+
+/* RWD */
+/* 不考慮 325px 以下的狀況 */
+
+@media (max-width: 500px) {
+    main > .gameboard {
+        height: 60vh;
+        width: 60vh;
+    }
+}
+
+@media (max-width: 375px) {
+    main > .gameboard {
+        height: 50vh;
+        width: 50vh;
+    }
+}
+
+/* Windows 模式 */
+.windows-mode > main > .gameboard {
+    transform: rotateZ(calc((var(--score) - 1) * 90deg));
+    transition: transform 0.15s ease-in;
+}
+
+.windows-mode > main > .gameboard > .tile:nth-of-type(n) {
+    background-color: #f0652b;
+}
+.windows-mode > main > .gameboard > .tile:nth-of-type(2n) {
+    background-color: #8cbd00;
+}
+.windows-mode > main > .gameboard > .tile:nth-of-type(3n) {
+    background-color: #00aee9;
+}
+.windows-mode > main > .gameboard > .tile:nth-of-type(4n) {
+    background-color: #f6cf63;
+}

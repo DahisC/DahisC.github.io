@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>在 Hexo 中新增留言板插件 Gitalk | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">在 Hexo 中新增留言板插件 Gitalk</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">June 28, 2021&nbsp;&nbsp;1:45:35</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="什麼是-Gitalk？"><a href="#什麼是-Gitalk？" class="headerlink" title="什麼是 Gitalk？"></a>什麼是 Gitalk？</h2><p><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk">Gitalk</a> 是一套把 Github Issues 當作資料庫的留言板插件，並以輕量版的 React - Preact 為基底開發。</p>
+<h2 id="這文章要幹嘛？"><a href="#這文章要幹嘛？" class="headerlink" title="這文章要幹嘛？"></a>這文章要幹嘛？</h2><p>由於 Hexo 是生成靜態檔案，把 Gitalk 的留言功能整合進你的 Hexo 部落格系統可以完美解決 Hexo 生成的靜態網頁沒有資料庫所以無法實作留言板功能的缺憾。</p>
+<hr>
+<h1 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h1><ul>
+<li>（必須）<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">申請</a> Github OAuth 金鑰，並記下 ID 與 Secret。</li>
+<li>可能需要使用跟我一樣的 Hexo 主題 <a target="_blank" rel="noopener" href="https://github.com/Siricee/hexo-theme-Chic">Chic</a>，或者要略懂目前使用主題的模板架構。</li>
+</ul>
+<hr>
+<h1 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h1><p><strong><em>以下步驟都以 Chic 主題為例</em></strong></p>
+<h2 id="1-在主題資料夾中，找到元件資料夾，並新增檔案-gitalk-ejs"><a href="#1-在主題資料夾中，找到元件資料夾，並新增檔案-gitalk-ejs" class="headerlink" title="1. 在主題資料夾中，找到元件資料夾，並新增檔案 gitalk.ejs"></a>1. 在主題資料夾中，找到元件資料夾，並新增檔案 gitalk.ejs</h2><blockquote>
+<p>Chic/layout/_partial</p>
+</blockquote>
+<h2 id="2-在-gitalk-ejs-檔案中引入-gitalk-並寫好-HTML"><a href="#2-在-gitalk-ejs-檔案中引入-gitalk-並寫好-HTML" class="headerlink" title="2. 在 gitalk.ejs 檔案中引入 gitalk 並寫好 HTML"></a>2. 在 gitalk.ejs 檔案中引入 gitalk 並寫好 HTML</h2><blockquote>
+<p>Chic/layout/_partial/gitalk.ejs</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-class">.post-gitalk</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-top</span>: <span class="number">5rem</span>;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;post-gitalk&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">clientID</span>: <span class="string">&#x27;29fa6a73372198e453e1&#x27;</span>,</span></span><br><span class="line"><span class="javascript">    <span class="attr">clientSecret</span>: <span class="string">&#x27;4c24b3860a15d4685af93c57896e463fdb329ba7&#x27;</span>,</span></span><br><span class="line"><span class="javascript">    <span class="attr">repo</span>: <span class="string">&#x27;DahisC.github.io&#x27;</span>, <span class="comment">// The repository of store comments,</span></span></span><br><span class="line"><span class="javascript">    <span class="attr">owner</span>: <span class="string">&#x27;DahisC&#x27;</span>,</span></span><br><span class="line"><span class="javascript">    <span class="attr">admin</span>: [<span class="string">&#x27;DahisC&#x27;</span>],</span></span><br><span class="line"><span class="javascript">    <span class="attr">id</span>: location.pathname, <span class="comment">// Ensure uniqueness and length less than 50</span></span></span><br><span class="line"><span class="javascript">    <span class="attr">distractionFreeMode</span>: <span class="literal">false</span>, <span class="comment">// Facebook-like distraction free mode</span></span></span><br><span class="line"><span class="javascript">    <span class="attr">language</span>: <span class="string">&#x27;en&#x27;</span>,</span></span><br><span class="line"><span class="javascript">  &#125;);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">  gitalk.render(<span class="string">&#x27;gitalk-container&#x27;</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-在文章模板中引入剛剛寫好的插件"><a href="#3-在文章模板中引入剛剛寫好的插件" class="headerlink" title="3. 在文章模板中引入剛剛寫好的插件"></a>3. 在文章模板中引入剛剛寫好的插件</h2><blockquote>
+<p>Chic/layout/_page/post.ejs</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;post-nav&quot;</span>&gt;</span></span><br><span class="line">      &lt;% if(post.prev)&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;prev&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;prev&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(post.prev.path)%&gt;&quot;</span>&gt;</span>&lt;%- post.prev.title%&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      &lt;% &#125; %&gt; &lt;% if(post.next)&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;next&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;next&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(post.next.path)%&gt;&quot;</span>&gt;</span>&lt;%- post.next.title%&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 引入插件 --&gt;</span></span><br><span class="line">    &lt;%- partial(&#x27;_partial/gitalk&#x27;) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-在開發伺服器中確認並部署至-Github"><a href="#4-在開發伺服器中確認並部署至-Github" class="headerlink" title="4. 在開發伺服器中確認並部署至 Github"></a>4. 在開發伺服器中確認並部署至 Github</h2><p>成功之後重開 Hexo 的開發伺服器，應該會在剛剛引入的位置看見留言板，但尚未初始化；<br>確認出現後請將部落格重新部署至 Github。</p>
+<p><img src="/posts/51727/check-in-dev-server.png"></p>
+<h2 id="5-在正式的部落格環境中授權"><a href="#5-在正式的部落格環境中授權" class="headerlink" title="5. 在正式的部落格環境中授權"></a>5. 在正式的部落格環境中授權</h2><p>按下剛剛開發環境中出現的按鈕，並允許 gitalk 存取你指定的 Github 儲藏庫。</p>
+<h2 id="6-完成"><a href="#6-完成" class="headerlink" title="6. 完成"></a>6. 完成</h2><p><img src="/posts/51727/done.png"></p>
+<hr>
+<h1 id="tl-dr"><a href="#tl-dr" class="headerlink" title="tl;dr"></a>tl;dr</h1><p>想出這方法的人真天才，免費仔的極致 XDDD</p>
+<p>新增的文章都會在 Github 中新增一個對應的 Issue，然後把留言存在裡面</p>
+<p>很棒！！！</p>
+<p><img src="/posts/51727/tldr-1.png"><br><img src="/posts/51727/tldr-2.png"></p>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/51727/">https://dahisc.github.io/posts/51727/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/Hexo/"># Hexo</a>
+          
+          <a href="/tags/Gitalk/"># Gitalk</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/63535/">Amigo - 旅人地圖</a>
+       
+      <a class="next" rel="next" href="/posts/58388/">JavaScript 30</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

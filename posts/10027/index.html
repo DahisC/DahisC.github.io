@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>（筆記）JavaScript 全攻略：克服 JS 的奇怪部分 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">（筆記）JavaScript 全攻略：克服 JS 的奇怪部分</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">August 10, 2021&nbsp;&nbsp;15:48:34</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="詞彙環境-Lexical-Environment"><a href="#詞彙環境-Lexical-Environment" class="headerlink" title="詞彙環境 Lexical Environment"></a>詞彙環境 Lexical Environment</h1><p>程式碼被實際撰寫的位置，而撰寫的位置則會影響 Scope Chain；在 JavaScript 中，重要的不是撰寫的上下順序，而是變數的位置之外是否有被函式包住</p>
+<h1 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h1><ul>
+<li>在創造階段時，JavaScript 會先將所有變數的宣告放進記憶體，接著賦予 undefined 這個特殊的值</li>
+<li>undefined 應該被視為你沒有賦予這個值變數，所以不主動將 undefined 賦值給變數有助於排除錯誤</li>
+</ul>
+<h1 id="關於-JavaScript-的引擎"><a href="#關於-JavaScript-的引擎" class="headerlink" title="關於 JavaScript 的引擎"></a>關於 JavaScript 的引擎</h1><ul>
+<li>單執行緒 Single Threaded<ul>
+<li>一次只執行一個指令</li>
+</ul>
+</li>
+<li>同步 Synchronous<ul>
+<li>程式碼依照出現的順序，一次只執行一行</li>
+</ul>
+</li>
+</ul>
+<h1 id="執行堆-Execution-Stack"><a href="#執行堆-Execution-Stack" class="headerlink" title="執行堆 Execution Stack"></a>執行堆 Execution Stack</h1><p><img src="/posts/10027/1.png"></p>
+<ul>
+<li>堆疊結構（先進後出）</li>
+<li>最下層的會是全域執行環境 Global Execution Context</li>
+<li>每次呼叫函式，JavaScript 就會創造一個專屬於該函式的 Exection Context 並放進 Exection Stack 中</li>
+</ul>
+<h1 id="範疇-Scope"><a href="#範疇-Scope" class="headerlink" title="範疇 Scope"></a>範疇 Scope</h1><blockquote>
+<p>變數可以被取用的範圍（像是函式中宣告的變數，可以在此函式以內被使用）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(v); <span class="comment">// 1: 變數在範疇之中</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v); <span class="comment">// Reference Error: 變數不在範疇之中</span></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
+
+<h1 id="範疇鍊-Scope-Chain"><a href="#範疇鍊-Scope-Chain" class="headerlink" title="範疇鍊 Scope Chain"></a>範疇鍊 Scope Chain</h1><blockquote>
+<p>變數可以被取用的所有範圍（向外尋找；如果一個）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v); <span class="comment">// 1: 雖然在 B() 的範疇中未找到 v，但外層的 A 函式也屬於 B 函式的範疇鍊，所以印出 1</span></span><br><span class="line">  &#125;</span><br><span class="line">  B();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(v); <span class="comment">// Reference Error: 變數不在範疇之中</span></span><br><span class="line">A();</span><br></pre></td></tr></table></figure>
+
+<h1 id="瀏覽器的引擎與底層運作方式"><a href="#瀏覽器的引擎與底層運作方式" class="headerlink" title="瀏覽器的引擎與底層運作方式"></a>瀏覽器的引擎與底層運作方式</h1><blockquote>
+<p>在瀏覽器中，處理 JavaScript 的引擎是以<strong>同步</strong>的方式處理所有指令，然而瀏覽器也能觸發非同步回呼的函式（Asynchornous callbacks），原因是因為除了有引擎在處理 JavaScript 以外，也同時有其它引擎在處理其它部分，像是繪製（或渲染 Rendering）、HTTP 請求，這些都與 JavaScript 分屬不同的引擎，而透過 JavaScript 執行這些請求時，就相當於將做這些事情的控制權交到這些引擎手中。</p>
+</blockquote>
+<h1 id="JavaScript-如何處理非同步事件"><a href="#JavaScript-如何處理非同步事件" class="headerlink" title="JavaScript 如何處理非同步事件"></a>JavaScript 如何處理非同步事件</h1><blockquote>
+<p>JavaScript 使用一個稱為事件佇列（event queue）的方式同步地處理非同步的這些事件，且當 JavaScript 本身的執行堆中都處理完畢時，才會將事件佇列的事件放進執行堆中執行。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// long running function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitThreeSeconds</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ms = <span class="number">3000</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span>() &lt; ms)&#123;&#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;finished function&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;click event!&#x27;</span>);   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// listen for the click event</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>, clickHandler);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">waitThreeSeconds(); <span class="comment">// 這邊觸發的函式，會先被放入執行堆中</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;finished execution&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>按照範例，我們在 document 上加入了一個點擊事件的監聽器，並且在打開網頁時會先觸發 <code>waitThreeSeconds()</code> 函式，同時在 <code>waitThreeSeconds()</code> 卡住渲染引擎的同時，點擊一次按鈕，這時候的引擎狀態應該如下： </p>
+<ul>
+<li><p>執行堆</p>
+<ul>
+<li><code>waitThreeSeconds()</code></li>
+<li><code>Global</code></li>
+</ul>
+</li>
+<li><p>事件佇列</p>
+<ul>
+<li><code>clickHandler()</code></li>
+</ul>
+</li>
+</ul>
+<p>這時候打開瀏覽器，會發現控制台以下面的順序印出文字：</p>
+<ol>
+<li>finished function -&gt; 來自 <code>waitThreeSeconds()</code> 函式，執行堆中的最上層</li>
+<li>finished execution -&gt; 來自全域，執行堆中的最下層</li>
+<li>click event! -&gt; 來自事件佇列的 <code>clickHandler()</code>，當 1. 與 2. 從執行堆中離開時，它會被放到執行堆中</li>
+</ol>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/10027/">https://dahisc.github.io/posts/10027/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+          
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/15787/">JavaScript 中的 call, apply 與 bind</a>
+       
+      <a class="next" rel="next" href="/posts/15719/">瀏覽器中頁面的生命週期</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

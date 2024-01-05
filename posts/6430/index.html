@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>Json Web Token | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">Json Web Token</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">July 4, 2021&nbsp;&nbsp;16:23:24</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="什麼是-Json-Web-Token？"><a href="#什麼是-Json-Web-Token？" class="headerlink" title="什麼是 Json Web Token？"></a>什麼是 Json Web Token？</h1><blockquote>
+<p>Json Web Token aka. JWT 是依據 <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 開放標準</a> 實作的授權（Authorization）機制。<br>麻雀雖小且五臟俱全（a compact and self-contained way）的方式使其可以安全地透過 JSON 格式進行資訊交換，並因數位簽章的機制使其儲存的資料可被信任並通過驗證。<br>加密數位簽章的演算法是使用 HMAC 演算法、或者是以 RDS 或 ECDSA 的公私鑰演算法加密。</p>
+</blockquote>
+<p><a href="#">延伸閱讀：Authorization 與 Authentication 的差別？</a></p>
+<blockquote>
+<p>白話：JWT 以 JSON 格式儲存資料、並且經過演算法加密與編碼過的格式不但小而且也有方式可以驗證其資料有沒有被竄改</p>
+</blockquote>
+<h1 id="為什麼應該要用-JWT？"><a href="#為什麼應該要用-JWT？" class="headerlink" title="為什麼應該要用 JWT？"></a>為什麼應該要用 JWT？</h1><ul>
+<li><p>授權 Authorization</p>
+<p>使用 JWT 最常見的原因。一旦使用者登入後，其後所有的請求都會夾帶 JWT，允許使用者透過此權杖進行各種動作（進入頁面、使用服務、取得資源等等）。<br>而單一登入（Single Sign On）的功能也是現今 JWT 被廣泛使用的原因之一，因其小而精巧的格式與儲存資訊的方式可以被簡單地應用在不同網域的系統中。</p>
+</li>
+</ul>
+<blockquote>
+<p>白話：JWT 很小很方便還能儲存資訊，可以拿來解決平常 Session 遇到的限制－－像是使用者在不同網域之間會需要重複登入。</p>
+</blockquote>
+<ul>
+<li><p>資訊交換 Information Exchange</p>
+<p>JWT 也是另一個安全地傳送資訊的好方法，因為 JWT 可以被簽署。舉個例子，如果使用公私鑰的加密方式簽署一個 JWT，你就可以確保請求者是誰；<br>又或者，如果透過 JWT 中儲存的 header 與 payload 演算法計算其內容是否有沒有被更動過。</p>
+</li>
+</ul>
+<blockquote>
+<p>白話：JWT 可以透過演算法加密，也可以直接透過伺服器內儲存的密鑰解密以確保內容的完整性</p>
+</blockquote>
+<h1 id="觀念釐清"><a href="#觀念釐清" class="headerlink" title="觀念釐清"></a>觀念釐清</h1><h2 id="JWT-與-Session-機制"><a href="#JWT-與-Session-機制" class="headerlink" title="JWT 與 Session 機制"></a>JWT 與 Session 機制</h2><ul>
+<li><p>Session</p>
+<ul>
+<li>步驟</li>
+</ul>
+<ol>
+<li>使用者登入</li>
+<li>伺服器驗證成功後在伺服器端的記憶體存入 Session ID，並將此 Session ID 回傳給使用者</li>
+<li>使用者每次請求時夾帶 Session ID，伺服器在伺服器端的記憶體中尋找此 Session ID 的紀錄</li>
+<li>伺服器透過 Session ID 紀錄的狀態去資料庫中取出使用者資料並判斷授權</li>
+</ol>
+<ul>
+<li>缺點</li>
+</ul>
+<ol>
+<li>不同服務架構底下（像是同組織間的不同網域、負載平衡產生的伺服器等等），伺服器的記憶體無法共享，也導致使用者的登入狀態無法被記住</li>
+</ol>
+</li>
+<li><p>JWT</p>
+<ol>
+<li>使用者登入</li>
+<li>伺服器驗證成功後根據伺服器端中儲存的密鑰加密 JWT，並直接返回給使用者</li>
+<li>使用者每次請求時夾帶 JWT，伺服器只驗證 JWT 的正確性</li>
+<li>從 JWT 中取出使用者的資料並判斷授權</li>
+</ol>
+<ul>
+<li>優點</li>
+</ul>
+<ol>
+<li>當不同服務之間透過同一組密鑰簽署 JWT，在這些服務之間都會認可該 JWT 表明的身分，也就可以做到單一登入（Single Sign On）的功能</li>
+</ol>
+</li>
+</ul>
+<h2 id="驗證-Authentication-與-授權-Authorization"><a href="#驗證-Authentication-與-授權-Authorization" class="headerlink" title="驗證 Authentication 與 授權 Authorization"></a>驗證 Authentication 與 授權 Authorization</h2><ul>
+<li><p>驗證 Authentication</p>
+<ul>
+<li>例子：使用者登入時，伺服器判斷帳號密碼正確與否的過程</li>
+<li>搭配的 HTTP Status Code 是 <code>401 Unauthorized</code></li>
+<li>白話：你是……嗎？</li>
+</ul>
+</li>
+<li><p>授權 Authorization</p>
+<ul>
+<li>例子：使用者請求時，伺服器判斷你能不能執行請求的過程</li>
+<li>搭配的 HTTP Status Code 是 <code>403 Forbidden</code></li>
+<li>白話：你可以做……嗎？</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/7Q17ubqLfaM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/6430/">https://dahisc.github.io/posts/6430/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/JWT/"># JWT</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/63534/">水藍嗶啵鼠 - 結合爬蟲與 Line Notify 的作品</a>
+       
+      <a class="next" rel="next" href="/posts/51728/">Microsoft 官網切版練習</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

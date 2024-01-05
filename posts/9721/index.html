@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>兩分鐘將部落格系統 Hexo 部署至 Github Pages | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">兩分鐘將部落格系統 Hexo 部署至 Github Pages</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">June 27, 2021&nbsp;&nbsp;14:29:32</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><p><img src="/posts/9721/github-pages.jpg"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="什麼是-Github-Pages？"><a href="#什麼是-Github-Pages？" class="headerlink" title="什麼是 Github Pages？"></a>什麼是 Github Pages？</h2><p><a target="_blank" rel="noopener" href="https://pages.github.com/">Github Pages</a> 是 Github 提供的免費靜態網頁部署空間，每個帳號都可以免費獲得一個對應 Github 帳號的空間。</p>
+<h2 id="什麼是-Hexo？"><a href="#什麼是-Hexo？" class="headerlink" title="什麼是 Hexo？"></a>什麼是 Hexo？</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-tw/">Hexo</a> 是一個快速、簡單且強大的網誌框架。Hexo 使用 Markdown（或其他標記語言）解析您的文章，並在幾秒鐘內，透過漂亮的主題產生靜態檔案。</p>
+<h2 id="這文章要幹嘛？"><a href="#這文章要幹嘛？" class="headerlink" title="這文章要幹嘛？"></a>這文章要幹嘛？</h2><p>用兩分鐘教你怎麼在 Github 上建立一個部落格系統！！！</p>
+<hr>
+<h1 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h1><h2 id="下載並安裝"><a href="#下載並安裝" class="headerlink" title="下載並安裝"></a>下載並安裝</h2><ol>
+<li>Node.js</li>
+<li>git</li>
+</ol>
+<h2 id="套件"><a href="#套件" class="headerlink" title="套件"></a>套件</h2><ol>
+<li><code>npm i hexo-cli -g</code></li>
+</ol>
+<hr>
+<h1 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h1><blockquote>
+<p>以下的步驟都以 Github 帳號 <em>Hexo</em> 為例</p>
+</blockquote>
+<h2 id="1-在-Github-上新增一個公開儲藏庫"><a href="#1-在-Github-上新增一個公開儲藏庫" class="headerlink" title="1. 在 Github 上新增一個公開儲藏庫"></a>1. 在 Github 上<a target="_blank" rel="noopener" href="https://github.com/new">新增</a>一個公開儲藏庫</h2><ul>
+<li>儲藏庫名稱為 <em>Hexo</em>.github.io</li>
+</ul>
+<h2 id="2-Clone-儲藏庫至本機並在根目錄中執行以下指令"><a href="#2-Clone-儲藏庫至本機並在根目錄中執行以下指令" class="headerlink" title="2. Clone 儲藏庫至本機並在根目錄中執行以下指令"></a>2. Clone 儲藏庫至本機並在根目錄中執行以下指令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm i hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-更改根目錄中-config-yml-的部署設定"><a href="#3-更改根目錄中-config-yml-的部署設定" class="headerlink" title="3. 更改根目錄中 _config.yml 的部署設定"></a>3. 更改根目錄中 _config.yml 的部署設定</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/Hexo/Hexo.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-在-blog-底下執行以下指令"><a href="#4-在-blog-底下執行以下指令" class="headerlink" title="4. 在 /blog 底下執行以下指令"></a>4. 在 /blog 底下執行以下指令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean // 清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</span><br><span class="line">hexo deploy // 部署網站。</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-更改儲藏庫設定"><a href="#5-更改儲藏庫設定" class="headerlink" title="5. 更改儲藏庫設定"></a>5. 更改儲藏庫設定</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/DahisC/Amigo-TravelerMap/settings/pages">設定 Github Pages</a> 的檔案來源</p>
+<ol>
+<li>將 Branch 設定成 gh-pages</li>
+<li>將資料夾設定為 /(root)</li>
+</ol>
+</li>
+</ul>
+<p><img src="/posts/9721/setting-github-pages.png"></p>
+<h2 id="6-完成"><a href="#6-完成" class="headerlink" title="6. 完成"></a>6. 完成</h2><ul>
+<li>部署的網站會出現在 <a target="_blank" rel="noopener" href="https://hexo.github.io/">https://Hexo.github.io/</a><br>你剛剛建立好了自己的 Github Pages，並且也把部落格系統 Hexo 部署上去了，如果點進去是 404 請稍安勿躁，Github 設定可能需要幾分鐘的時間。</li>
+</ul>
+<hr>
+<h1 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h1><ul>
+<li><a href="https://dahisc.github.io/posts/51727/">在 Hexo 中新增留言板插件 Gitalk</a></li>
+<li>如何將 Hexo 的文章網址縮短？</li>
+<li>如何將作品集資料夾與 Hexo 部落格系統整合在 Github Pages 上？</li>
+</ul>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/9721/">https://dahisc.github.io/posts/9721/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/Github-Page/"># Github Page</a>
+          
+          <a href="/tags/Hexo/"># Hexo</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/58388/">JavaScript 30</a>
+       
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

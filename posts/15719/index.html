@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>瀏覽器中頁面的生命週期 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">瀏覽器中頁面的生命週期</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">August 9, 2021&nbsp;&nbsp;13:12:21</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="頁面的生命週期"><a href="#頁面的生命週期" class="headerlink" title="頁面的生命週期"></a>頁面的生命週期</h1><p>在瀏覽器中，從使用者打開頁面到離開頁面的過程會經歷下述四個事件，分別為：</p>
+<ol>
+<li>DOMContentLoaded - DOM 掛載至頁面中</li>
+<li>load - 除了 DOM 之外，<code>&lt;img&gt;</code>, <code>&lt;style&gt;</code> 等已被載入（不包含<code>&lt;script&gt;</code>）</li>
+<li>beforeunload - 使用者按下關閉頁面</li>
+<li>unload - 使用者已關閉頁面</li>
+</ol>
+<h2 id="DOMContentLoaded"><a href="#DOMContentLoaded" class="headerlink" title="DOMContentLoaded"></a>DOMContentLoaded</h2><blockquote>
+<p><code>DOMContentLoaded</code> 事件會在<strong>所有</strong> DOM 已被掛載至頁面後觸發，但在這階段時還不包含外部引入的檔案，像是透過 <code>&lt;style&gt;</code> 引入的樣式檔以及 <code>&lt;img&gt;</code> 的圖片檔，也就是說在這階段很可能只會看到網頁原始不包含任何樣式的樣貌，但已經可以透過 JavaScript 操作 DOM，因為此時 DOM 已經被掛載至頁面中。</p>
+</blockquote>
+<blockquote>
+<p>比較特別的是，在這階段如果 <code>&lt;body&gt;</code> 標籤的「中間」包含了一個 <code>&lt;script&gt;</code> 標籤，則瀏覽器會停下來先執行 <code>&lt;script&gt;</code> 標籤內部的程式碼或者請求檔案（如果 <code>&lt;script&gt;</code> 擁有 <code>src</code> 屬性）後再繼續執行 DOM 的生成。</p>
+<p>上述情況有兩個例外：</p>
+<ol>
+<li><code>&lt;script async&gt;</code></li>
+<li>以 JavaScript 的 createElement 方法插入的 <code>&lt;script&gt;</code></li>
+</ol>
+</blockquote>
+<h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><blockquote>
+<p><code>load</code> 會在頁面被完整繪製時觸發，其中也包含樣式檔以及圖片檔等等，在 <code>load</code> 之後的畫面就相當於要呈現給使用者的最終畫面，也是常用的 <code>window.onload</code> 的觸發階段。</p>
+</blockquote>
+<h2 id="beforeunload"><a href="#beforeunload" class="headerlink" title="beforeunload"></a>beforeunload</h2><blockquote>
+<p><code>beforeunload</code> 事件會在使用者離開頁面時觸發（也就是已經按下了關閉分頁的 X 但尚未關閉分頁時）；一般會在這個階段詢問使用者是否要關閉分頁等等，讓使用者有最後反悔的機會。</p>
+</blockquote>
+<h2 id="unload"><a href="#unload" class="headerlink" title="unload"></a>unload</h2><blockquote>
+<p><code>unload</code> 事件會在使用者離開頁面<em>後</em>觸發，一般會在這個階段送出頁面的統計數據，但由於一般的 <code>XMLHttpRequest</code> 預設是異步模式，所以如果在此事件中使用異步的請求通常會被瀏覽器忽略，因為在執行時使用者已經關閉了頁面（也就相當於停止執行頁面上的 JavaScript），所以需要將 <code>XMLHttpRequest</code> 的 <code>open()</code> 方法第三個引數填入 <code>true</code> 開啟異步模式，就可以確保使用者在觸發此事件時先等待請求的結果後才關閉頁面；然而這個方式可能會導致使用者離開頁面的動作被暫時停止，因為同步執行的請求會阻塞使用者離開頁面的事件。<br>取而代之的是，如果透過 <code>navigator.sendBeacon()</code> 則是以異步的方式送出請求，卻又確保了能夠執行請求並不會阻塞使用者的離開頁面事件。</p>
+</blockquote>
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://javascript.info/onload-ondomcontentloaded">Page: DOMContentLoaded, load, beforeunload, unload</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon">(MDN) Navigator.sendBeacon()</a></li>
+</ol>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/15719/">https://dahisc.github.io/posts/15719/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/Browser/"># Browser</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/10027/">（筆記）JavaScript 全攻略：克服 JS 的奇怪部分</a>
+       
+      <a class="next" rel="next" href="/posts/65221/">HTML 常見問題</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

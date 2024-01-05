@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>Amigo - 旅人地圖 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">Amigo - 旅人地圖</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">June 28, 2021&nbsp;&nbsp;13:20:16</a>
+        </span>
+         
+        <span class="post-category">
+          Category: 
+          <a href="/categories/Portfolio/">Portfolio</a>
+          
+        </span>
+        
+      </div>
+      
+    </header>
+
+    <div class="post-content"><p><img src="/posts/63535/map.png"></p>
+<blockquote>
+<p><strong>Amigo 是每個人的旅人地圖，記錄著那些短暫出現卻又精彩萬分的事物</strong></p>
+</blockquote>
+<p><img src="/posts/63535/homepage-preview.png"></p>
+<hr>
+<h1 id="相關連結"><a href="#相關連結" class="headerlink" title="相關連結"></a>相關連結</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://110-03-nchu-amigo.dev-hub.io/">Amigo - 旅人地圖官方網站</a></li>
+</ul>
+<h1 id="關於-Amigo"><a href="#關於-Amigo" class="headerlink" title="關於 Amigo"></a>關於 Amigo</h1><h2 id="設計主軸"><a href="#設計主軸" class="headerlink" title="設計主軸"></a>設計主軸</h2><blockquote>
+<p><strong>突然不知道要去哪裡？</strong></p>
+</blockquote>
+<p>Amigo 是基於地圖提供的服務，讓使用者出門時如果臨時想查詢附近有什麼活動可以參與，只要透過阿米狗的地圖功能就能快速地發現附近那些所有好玩的地點！</p>
+<p>不只是一般的餐廳、景點這種靜態的地點，也能夠顯示像是小型演唱會、市集、祭典、展覽這種短時間的活動。</p>
+<p>除此之外，Amigo 也可以讓旅人們把這些喜歡的地點收藏在自己的個人地圖中，並且將自己的個人地圖網址分享給其它旅人；而每張個人地圖又都可以再匯出成行程表寄送到信箱或轉成 PDF 檔案輸出，讓出遊的旅人可以更方便地管理自己的行程。</p>
+<h2 id="網站功能"><a href="#網站功能" class="headerlink" title="網站功能"></a>網站功能</h2><ol>
+<li><p>有趣的地點 Attractions<br>不同於一般的地圖，Amigo 也蒐集了那些有趣的地點，像是街頭藝人的表演、某個地區的祭典、短時間展出的活動等等。</p>
+</li>
+<li><p>地圖 Map<br>將有趣的地點整理在地圖服務中，並讓使用者可以透過地圖旅行以及規劃個人地圖。</p>
+</li>
+<li><p>行程表 Itineraries<br>將個人地圖中的地點寄送至使用者的信箱或者是匯出成 PDF，讓使用者在旅行的過程中可以更方便地瀏覽這些資訊。</p>
+</li>
+</ol>
+<hr>
+<h1 id="關於此作品"><a href="#關於此作品" class="headerlink" title="關於此作品"></a>關於此作品</h1><blockquote>
+<p>Github Repository <a target="_blank" rel="noopener" href="https://github.com/DahisC/Amigo-TravelerMap">Amigo - TravelerMap</a></p>
+</blockquote>
+<p>這個作品是於 2021 年參加職訓時的團體專題題目，班上一共分成 6 組／每組 5 人，由於當時參加職訓之前就有工程師的經驗（班上大多數同學都沒有相關背景；職訓的課程為三個月，內容涵蓋了前端與後端相關技術），所以我也因此被指派為小組組長，整個專題的開發時程約一個月。</p>
+<p>透過這次的組長經驗，學習到了如何從頭到尾規劃一次完整的開發流程，並且也以當初工程師學到的技術引導小組成員開發此作品。</p>
+<h1 id="開發流程"><a href="#開發流程" class="headerlink" title="開發流程"></a>開發流程</h1><table>
+<thead>
+<tr>
+<th align="center">123</th>
+<th align="center">工具</th>
+<th align="center">圖片</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">進度規劃</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.notion.so/943a743b56ad4e66bb511cd3f50e96eb">Notion</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">心智圖</td>
+<td align="center">Miro</td>
+<td align="center"><a href="mind-map.jpg">圖片 1</a></td>
+</tr>
+<tr>
+<td align="center">網站地圖</td>
+<td align="center">Miro</td>
+<td align="center"><a href="site-map.jpg">圖片 1</a></td>
+</tr>
+<tr>
+<td align="center">線框稿</td>
+<td align="center">Figma</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">視覺稿</td>
+<td align="center">Figma</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h1 id="使用技術"><a href="#使用技術" class="headerlink" title="使用技術"></a>使用技術</h1><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">技術／套件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">前端框架</td>
+<td align="center">Vue</td>
+</tr>
+<tr>
+<td align="center">前端套件</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://introjs.com/">Intro.js</a> / <a target="_blank" rel="noopener" href="https://leafletjs.com/">Leaflet</a></td>
+</tr>
+<tr>
+<td align="center">CSS 框架</td>
+<td align="center">Bootstrap 5 + <a target="_blank" rel="noopener" href="https://mdbootstrap.com/">MDBootstrap</a></td>
+</tr>
+<tr>
+<td align="center">後端框架</td>
+<td align="center">Laravel 7</td>
+</tr>
+<tr>
+<td align="center">資料庫</td>
+<td align="center">MySQL</td>
+</tr>
+</tbody></table>
+<h1 id="我負責的工作"><a href="#我負責的工作" class="headerlink" title="我負責的工作"></a>我負責的工作</h1><h2 id="團隊"><a href="#團隊" class="headerlink" title="團隊"></a>團隊</h2><ul>
+<li><p>以標準的 Github 開發流程同步程式碼<br>由於職訓的課程並未完整介紹 Github Branch / Pull Request 的功能，所以為了讓組員可以更方便地同步彼此的程式碼，我將這套開發流程引入了這次的團體專題中。</p>
+<p>分支分為開發 development 與生產 production 用的分支，並且對此二分支設了分支保護。<br>也要求成員在提交 Pull Request 時需要指定我為 Reviewer，而我也會檢查大家程式碼的撰寫方式與要求程式碼風格（程式碼風格也有統一使用排版套件管理），並適時地給予<a target="_blank" rel="noopener" href="https://github.com/DahisC/Amigo-TravelerMap/pull/44">撰寫建議</a>。</p>
+</li>
+<li><p>以 Notion 進行討論<br>Notion 主要是由另一位團隊成員 C 推坑給我，並且在發現 Notion 真的很好用後就開始認真地在 Notion 上與成員 C 共同規劃團隊進度與整理開發文件。</p>
+<ul>
+<li>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/943a743b56ad4e66bb511cd3f50e96eb">團隊進度 (Notion)</a></li>
+<li>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/fafd0d0421aa4bc8b7297e5341e3ec35?v=8e9230e23e314e3d8396fc40e3983fe1">相關文件 (Notion)</a></li>
+<li>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/a0074213ee6d44439ceb64213669b0bf?v=bd5bce8b22fe40a68098deb5a8dc20eb">會議記錄 (Notion)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="企劃"><a href="#企劃" class="headerlink" title="企劃"></a>企劃</h2><ul>
+<li><p>主要企劃<br>主題的發想是由另一位成員 S 提出，在團隊同意以此主題作為開發目標時我則負責收集大家意見，並根據心智圖規劃必要功能，在討論的過程中也會就技術的可行性與否進行功能的刪減。</p>
+</li>
+<li><p>進度規劃<br>接著使用 Notion 的功能預先排好了約接下來一個月大致應該要完成的功能，再以卡片式的管理方式與團隊成員討論。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/943a743b56ad4e66bb511cd3f50e96eb">進度規劃 (Notion)</a><br>🔗 <a href="notion-progression.png">進度規劃 (image)</a></p>
+</li>
+<li><p>線框稿繪製<br>　由於設計方面團隊決議由我與另一位團隊成員 C 擔當，所以線框稿由我與 C 共同繪製。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.figma.com/file/q9vcJwvKaEzpASradvq6dL/Amigo-%E7%B7%9A%E6%A1%86%E7%A8%BF-Wireframe?node-id=0:1">線框稿 Wireframe (Figma)</a></p>
+</li>
+<li><p>視覺稿設計<br>在視覺稿的階段，主要由我制定關於字體、版面的編排方式，並由團隊成員 C 決定網站配色。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.figma.com/file/BoRbTIjRXJ6e0zjadg2Awq/Amigo-Wireframe-and-Mockup?node-id=0:1">視覺稿 Mockup (Figma)</a></p>
+</li>
+</ul>
+<h2 id="設計"><a href="#設計" class="headerlink" title="設計"></a>設計</h2><ul>
+<li><p>Logo<br>由於此次的職訓課程也有教到關於 Illustrator 的使用方式，所以也參與了網站 Logo 的設計。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/Dahis-Amigo-Logo-77cb7e93c85e46bb9f099185e135bdf2">Logo 設計過程</a><br>🔗 <a href="logo.svg">Logo (image)</a></p>
+</li>
+<li><p>網站配色<br>雖然網站最後使用的配色已經大幅改變，但在一開始時其實也有要求大家一起集思廣益，而這份文件則是我對當時網站風格的配色方案。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.notion.so/Dahis-58f4872bbeb34cd9851691a2a9e5f8a4">網站配色方案 (Notion)</a></p>
+</li>
+<li><p>文案撰寫<br>由我與成員 C 共同撰寫。</p>
+</li>
+<li><p>網站插圖<br>網站插圖來自另一位認識的設計師，所以在開發專題時我也與該設計師一起制定網站的插圖風格與吉祥物設定。</p>
+</li>
+</ul>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ul>
+<li><p>主要切版<br>由於其它兩位預計與我一起負責前端的同學相對比較沒經驗，所以切版的工作主要由我負責。</p>
+</li>
+<li><p>地圖功能<br>由於 Amigo 本身是以基於地圖而延伸的服務，所以在地圖的套件上我們使用了開源的 JavaScript 地圖套件 Leaflet 進行開發。<br>在開發過程中沒有遇到什麼太大的問題， 但由於這次是用 Laravel 開發，原先伺服器端算繪（SSR）的方式使用在地圖的搜尋與更新上就會影響使用者體驗，<br>所以在開發後期時為了解決使用者可能會頻繁更新網頁的問題，也透過 Vue + AJAX 的方式更新使用者的畫面。</p>
+</li>
+<li><p>操作導覽<br>導覽的功能則以 <a target="_blank" rel="noopener" href="https://introjs.com/">Intro.js</a>實作，透過這種方式在介面較為簡潔的頁面中加入適當的引導效果。</p>
+</li>
+</ul>
+<h2 id="後端"><a href="#後端" class="headerlink" title="後端"></a>後端</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://dbdiagram.io/d/60a7a07db29a09603d15f05a">資料表規劃</a><br>雖然關聯式資料庫也是在職訓時才接觸，但在了解大致上的資料表結構後也要求組員至少以第三正規化（3NF）的方式實作資料庫關聯。<br>當時會與後端組員一起討論資料表欄位的資料型態，以及負責檢查資料表之間的從屬與對應關係等等。</p>
+<p>🔗 <a target="_blank" rel="noopener" href="https://dbdiagram.io/d/60da7655dd6a59714823b305">資料庫架構表 (url)</a><br>🔗 <a href="database-diagram.png">資料庫架構表 (img)</a></p>
+</li>
+<li><p>技術支援<br>團隊中有另外兩位組員 C 與 D 負責後端的功能開發，身為組長的我則是在查詢某項功能需要透過哪些 Laravel 功能實作後將工作分派給這兩位成員研究並實作。<br>並且因為之前有 Node.js 的開發經驗所以在後端的學習進度上也比較得心應手，所以也會支援一些後端比較困難的程式邏輯。<br>舉例來說像是透過 Seeder 將政府的 API 資料存入資料庫、透過 Google Geocoding 的方式解析目標地址的經緯度、撰寫地圖的搜尋邏輯與資料庫查詢等等。</p>
+</li>
+</ul>
+<hr>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/63535/">https://dahisc.github.io/posts/63535/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/Bootstrap/"># Bootstrap</a>
+          
+          <a href="/tags/Laravel/"># Laravel</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/51728/">Microsoft 官網切版練習</a>
+       
+      <a class="next" rel="next" href="/posts/51727/">在 Hexo 中新增留言板插件 Gitalk</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

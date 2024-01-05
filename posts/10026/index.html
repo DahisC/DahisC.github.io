@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>讀書心得：打造最強網頁 UI/UX 設計腦 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">讀書心得：打造最強網頁 UI/UX 設計腦</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">August 5, 2021&nbsp;&nbsp;5:23:44</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="章節"><a href="#章節" class="headerlink" title="章節"></a>章節</h1><h2 id="01-設計師的職責為何？"><a href="#01-設計師的職責為何？" class="headerlink" title="01 設計師的職責為何？"></a>01 設計師的職責為何？</h2><blockquote>
+<p>人與網站之間就像人與人之間的對話</p>
+</blockquote>
+<blockquote>
+<p>參與設計，別囫圇吞棗</p>
+</blockquote>
+<ul>
+<li>討論時提出設計上的盲點與改進方式。</li>
+</ul>
+<h2 id="02-將網頁設計當成一種溝通"><a href="#02-將網頁設計當成一種溝通" class="headerlink" title="02 將網頁設計當成一種溝通"></a>02 將網頁設計當成一種溝通</h2><blockquote>
+<p>減少使用者動腦、思考的時間</p>
+</blockquote>
+<blockquote>
+<p>使用者會在何種情況下使用？最重要的資訊是什麼？</p>
+</blockquote>
+<ul>
+<li>舉例來說，如果是設計轉乘資訊的頁面則模擬使用者在某些情況下（例如跑步）時第一眼會如何接收版面設計傳遞的訊息；以轉乘設計來說，價格相對轉乘資訊比較沒那麼重要，則可以將價格的設計以淡化或縮小字體等方式處理。</li>
+</ul>
+<blockquote>
+<p>如果陷入設計盲點，則轉移目光再重新檢視</p>
+</blockquote>
+<ul>
+<li>如果沒辦法確認自己的設計是否有抓住重點，則將目光移至別處再轉回來，確認第一眼看到的資訊是否符合使用者當下的情境。</li>
+</ul>
+<blockquote>
+<p>格式塔 Gestalt</p>
+</blockquote>
+<ul>
+<li>人類天生善於處理群體資訊的本能，比起專注於設計上的某個點更容易被設計上的全貌所吸引。</li>
+<li><strong>在設計時，破除格式塔可以重新抓住使用者的目光。</strong></li>
+<li><strong><em>有部分資訊不符合群體規則時，就會被當成例外的資訊。</em></strong><ul>
+<li>在一個圓形符號的列表選單中，前方沒有符號的那一列。</li>
+<li>在間距相同的方塊群組中，間距不同的那塊。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>可點選的元素，以封閉狀態呈現</p>
+</blockquote>
+<blockquote>
+<p>避免過多的顏色與不符合規則的版面配置</p>
+</blockquote>
+<blockquote>
+<p>相同的元素就應該要有共通點，像是同樣的外框、顏色、或裝飾等等</p>
+</blockquote>
+<ul>
+<li><p>視情況打破格式塔的規律可以帶給使用者新鮮感，但別弄巧成拙</p>
+</li>
+<li><p>像是如果同樣都是可以點選的按鈕，但其中一個按鈕外框不一樣可能就會導致使用者疑惑</p>
+</li>
+</ul>
+<blockquote>
+<p>使用者可能不了解自己的目的</p>
+</blockquote>
+<ul>
+<li><p>在設計網站時，比起籠統、含蓄地介紹商品，也許可以考慮用一兩行字精準地引導使用者的興趣</p>
+</li>
+<li><p>以使用者的立場考慮是否能立即從網站中獲得想得知的資訊</p>
+</li>
+</ul>
+<blockquote>
+<p>該如何觸動使用者的心</p>
+</blockquote>
+<blockquote>
+<p>扁平化設計</p>
+</blockquote>
+<ul>
+<li><p>讓網站元素設計以平面為主</p>
+</li>
+<li><p>適當的陰影或漸層可營造立體感</p>
+</li>
+</ul>
+<h2 id="03-人與人之間的溝通"><a href="#03-人與人之間的溝通" class="headerlink" title="03 人與人之間的溝通"></a>03 人與人之間的溝通</h2><blockquote>
+<p>了解客戶想製作網站的本質並從中獲得靈感</p>
+</blockquote>
+<blockquote>
+<p>設計與使用者最接近的作品，打破砂鍋問到底</p>
+</blockquote>
+<blockquote>
+<p>詢問「為什麼想做成這樣？」</p>
+</blockquote>
+<blockquote>
+<p>與客戶對話，引出客戶的想法是設計工作的基本</p>
+</blockquote>
+<blockquote>
+<p><strong>承認「在該領域自己不是專家」很重要</strong></p>
+</blockquote>
+<blockquote>
+<p>工程師與設計師重視的面向不同</p>
+</blockquote>
+<h2 id="04-視覺與設計的實踐"><a href="#04-視覺與設計的實踐" class="headerlink" title="04 視覺與設計的實踐"></a>04 視覺與設計的實踐</h2><h3 id="導覽列"><a href="#導覽列" class="headerlink" title="導覽列"></a>導覽列</h3><blockquote>
+<p>過度的裝飾會使易讀性降低</p>
+</blockquote>
+<ul>
+<li><p>填色與陰影可滿足大部分的需求</p>
+</li>
+<li><p>真的要使用圖示，先想好理由；如果以強調圖示的方式設計，按鈕應該精簡</p>
+</li>
+</ul>
+<h4 id="漸層色"><a href="#漸層色" class="headerlink" title="漸層色"></a>漸層色</h4><ul>
+<li>優點：營造立體感</li>
+<li>缺點：明亮度如果產生變化，文字會不明顯；儘可能減少漸層的色差</li>
+</ul>
+<h4 id="陰影"><a href="#陰影" class="headerlink" title="陰影"></a>陰影</h4><ul>
+<li>優點：營造立體感、感覺可以按</li>
+<li>缺點：多餘的空間浪費</li>
+</ul>
+<h4 id="圓角效果"><a href="#圓角效果" class="headerlink" title="圓角效果"></a>圓角效果</h4><ul>
+<li>優點：散發親切感</li>
+<li>缺點：還是需要適當的間距、避免擁擠感</li>
+</ul>
+<h3 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h3><h4 id="黑體"><a href="#黑體" class="headerlink" title="黑體"></a>黑體</h4><ul>
+<li>橫豎相同，筆劃非常筆直</li>
+</ul>
+<p><img src="/posts/10026/%E9%BB%91%E9%AB%94.png" alt="黑體"></p>
+<h4 id="明體："><a href="#明體：" class="headerlink" title="明體："></a>明體：</h4><ul>
+<li>橫細豎粗，會比較明顯地表現中文字的勾、撇等方式</li>
+</ul>
+<p><img src="/posts/10026/%E6%98%8E%E9%AB%94.png" alt="明體"></p>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/10026/">https://dahisc.github.io/posts/10026/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+          
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/65221/">HTML 常見問題</a>
+       
+      <a class="next" rel="next" href="/posts/10024/">JS 中那些關於 truthy 與 falsy 值的觀念</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

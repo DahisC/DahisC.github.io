@@ -1,0 +1,22 @@
+@media (max-width: 767px) {
+  section:nth-of-type(2) {
+    flex-direction: column;
+  }
+  section:nth-of-type(2) > a {
+    flex-direction: row;
+    align-items: flex-start;
+    width: fit-content;
+  }
+  section:nth-of-type(2) > a > img {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+  .footer-bot {
+    flex-direction: column;
+  }
+  .footer-bot > .localization {
+    margin-bottom: 30px;
+  }
+}
