@@ -1,9 +1,9 @@
 ---
 title: Vue 的各種雙向綁定
-tags:
-  - Vue
 abbrlink: 8863
 date: 2024-01-04 23:03:40
+tags:
+  - Vue
 ---
 
 # 前言
