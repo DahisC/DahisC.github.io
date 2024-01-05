@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DahisC">
+
+
+
+
+
+<title>Vue 的各種雙向綁定 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Dahis&#39;s Lighthouse</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Dahis&#39;s Lighthouse</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories/Portfolio/">Portfolio</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
+  <article class="post-wrap">
+    <header class="post-header">
+      <h1 class="post-title">Vue 的各種雙向綁定</h1>
+      
+      <div class="post-meta">
+         Author:
+        <a itemprop="author" rel="author" href="/">DahisC</a>
+         
+        <span class="post-time">
+          Date:
+          <a href="#">January 4, 2024&nbsp;&nbsp;23:03:40</a>
+        </span>
+         
+      </div>
+      
+    </header>
+
+    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Vue 中，透過 <code>v-model</code> 可以簡單地雙向綁定原生標籤的輸入（事件）與輸出（顯示），如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">    const input = ref(&#x27;&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>但如果我們試圖建立一個自訂的 Input 組件（假設這個 Input 可能會有額外的樣式），這個雙向綁定就會失效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;CustomInput v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">    const input = ref(&#x27;&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// CustomInput.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="要怎麼重新雙向綁定？"><a href="#要怎麼重新雙向綁定？" class="headerlink" title="要怎麼重新雙向綁定？"></a>要怎麼重新雙向綁定？</h1><p>接下來的範例，App.vue 中的內容都不會改變，我們將注意力放在 <strong>CustomInput.vue</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;CustomInput v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">    const input = ref(&#x27;&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法一-重新雙向綁定"><a href="#方法一-重新雙向綁定" class="headerlink" title="方法一 - 重新雙向綁定"></a>方法一 - 重新雙向綁定</h2><p>將來自父層的 prop <code>modelValue</code> 傳給 input 顯示，並且捕捉 <code>input</code> 的輸入事件，透過 <code>emit</code> 事件將值更新回上一層組件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// CustomInput.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input :value=&quot;modelValue&quot; @input=&quot;onInput&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">interface Props &#123;</span><br><span class="line">    modelValue: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Emits &#123;</span><br><span class="line">    (e: &#x27;update:model-value&#x27;, value: string): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const props = defineProps&lt;Props&gt;();</span><br><span class="line">const emit = defineEmits&lt;Emits&gt;();</span><br><span class="line"></span><br><span class="line">const onInput = (e: any) =&gt; &#123; // 這邊的 e 請允許我先用 any</span><br><span class="line">    emit(&#x27;update:model-value&#x27;, e.target.value);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二-透過-getter-setter"><a href="#方法二-透過-getter-setter" class="headerlink" title="方法二 - 透過 getter/setter"></a>方法二 - 透過 getter/setter</h2><p>這個方式跟方法一有點像，但是稍微縮短了一些程式碼。</p>
+<p>利用 getter/setter 的特性，當 <code>input</code> 變數被取用的時候我們透過 <code>return props.modelValue</code> 取得來自 prop 的 <code>modelValue</code>，並且在 <code>input</code> 被賦值的時候，經過 setter <code>emit(&#39;update:model-value&#39;, value)</code> 發送回上層更新值。</p>
+<p>同樣也是重新做了雙向綁定，但讓程式碼的邏輯更為集中（集中在 <code>input</code> 這個變數處理）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// CustomInput.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; computed &#125; from &#x27;vue&#x27;;</span><br><span class="line"></span><br><span class="line">interface Props &#123;</span><br><span class="line">    modelValue: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Emits &#123;</span><br><span class="line">    (e: &#x27;update:model-value&#x27;, value: string): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const props = defineProps&lt;Props&gt;();</span><br><span class="line">const emit = defineEmits&lt;Emits&gt;();</span><br><span class="line"></span><br><span class="line">const input = computed(&#123;</span><br><span class="line">    get() &#123;</span><br><span class="line">        return props.modelValue;</span><br><span class="line">    &#125;,</span><br><span class="line">    set(value: string) &#123;</span><br><span class="line">        emit(&#x27;update:model-value&#x27;, value);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法三-VueUse-的-useVModel"><a href="#方法三-VueUse-的-useVModel" class="headerlink" title="方法三 - VueUse 的 useVModel"></a>方法三 - VueUse 的 useVModel</h2><p>透過別人寫好的函式，我們可以省略自己寫 getter/setter。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// CustomInput.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; useVModel &#125; from &#x27;@vueuse/core&#x27;;</span><br><span class="line"></span><br><span class="line">interface Props &#123;</span><br><span class="line">    modelValue: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Emits &#123;</span><br><span class="line">    (e: &#x27;update:model-value&#x27;, value: string): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const props = defineProps&lt;Props&gt;();</span><br><span class="line">const emit = defineEmits&lt;Emits&gt;();</span><br><span class="line"></span><br><span class="line">const input = useVModel(props, &#x27;modelValue&#x27;, emit);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>透過（簡略地查看）<a target="_blank" rel="noopener" href="https://github.com/vueuse/vueuse/blob/main/packages/core/useVModel/index.ts">原始碼</a>也可以看到 VueUse 最終回傳了一個跟方法二一樣的寫法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> computed&lt;P[K]&gt;(&#123;</span><br><span class="line">    <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> getValue()!</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">set</span>(<span class="params">value</span>)</span> &#123;</span><br><span class="line">        triggerEmit(value)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其實到這邊已經算是很方便了，我們工程師只需要安裝一個函式庫再引入 useVModel 再定義 <code>props</code> 跟 <code>emit</code> 就可以重新建立雙向綁定。</p>
+<p>人要知足。</p>
+<h2 id="方法四-Vue-原生的-defineModel"><a href="#方法四-Vue-原生的-defineModel" class="headerlink" title="方法四 - Vue 原生的 defineModel"></a>方法四 - Vue 原生的 defineModel</h2><p>欸？？？？？</p>
+<blockquote>
+<p>這個方法在 Vue 3.4 版中已經被更新為 Stable 了，請大家放心使用。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// CustomInput.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;input v-model=&quot;input&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; defineModel &#125; from &#x27;vue&#x27;;</span><br><span class="line"></span><br><span class="line">const input = defineModel();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h1><p><em><strong>尤雨溪，我謝謝你</strong></em>。</p>
+</div>
+
+    
+    <section class="post-copyright">
+       
+      <p class="copyright-item">
+        <span>Permalink:</span>
+        <span><a href="https://dahisc.github.io/posts/8863/">https://dahisc.github.io/posts/8863/</a></span>
+      </p>
+        
+    </section>
+    
+    <section class="post-tags">
+      <div>
+        <!-- <span>Tag(s):</span> -->
+        <span class="tag">
+           
+          <a href="/tags/Vue/"># Vue</a>
+           
+        </span>
+      </div>
+      <div>
+        <a href="javascript:window.history.back();">back</a>
+        <span>·</span>
+        <a href="/">home</a>
+      </div>
+    </section>
+    <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/12548/">那些看起來更厲害的 Vue 寫法</a>
+       
+      <a class="next" rel="next" href="/posts/50493/">Hydration 是什麼？</a>
+      
+    </section>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<style>
+  .post-gitalk {
+    margin-top: 5rem;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<section class="post-gitalk">
+  <div id="gitalk-container"></div>
+</section>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '29fa6a73372198e453e1',
+    clientSecret: '4c24b3860a15d4685af93c57896e463fdb329ba7',
+    repo: 'DahisC.github.io', // The repository of store comments,
+    owner: 'DahisC',
+    admin: ['DahisC'],
+    id: location.pathname, // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    language: 'en',
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+  </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DahisC | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

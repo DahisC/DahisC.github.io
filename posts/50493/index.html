@@ -97,7 +97,67 @@
 </script>
         <div class="main">
             <div class="container">
-    
+    <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>  
   <article class="post-wrap">
     <header class="post-header">
       <h1 class="post-title">Hydration 是什麼？</h1>
@@ -115,7 +175,26 @@
       
     </header>
 
-    <div class="post-content"></div>
+    <div class="post-content"><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>在使用 Nuxt 3 開發的過程，偶爾可以看到類似的警告</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Vue warn]: Hydration node mismatch:</span><br><span class="line">- rendered on server: &lt;div data-v-inspector=​&quot;pages/​test.vue:​2:​3&quot;&gt;​Nuxt​&lt;/div&gt;​  </span><br><span class="line">- expected on client: a </span><br><span class="line">  at &lt;Test onVnodeUnmounted=fn&lt;onVnodeUnmounted&gt; ref=Ref&lt; undefined &gt; &gt; </span><br><span class="line">  at &lt;Anonymous key=&quot;/test&quot; vnode= &#123;__v_isVNode: true, __v_skip: true, type: &#123;…&#125;, props: &#123;…&#125;, key: null, …&#125; route= &#123;fullPath: &#x27;/test&#x27;, hash: &#x27;&#x27;, query: &#123;…&#125;, name: &#x27;test&#x27;, path: &#x27;/test&#x27;, …&#125;  ... &gt; </span><br><span class="line">  at &lt;RouterView name=undefined route=undefined &gt; </span><br><span class="line">  at &lt;NuxtPage&gt; </span><br><span class="line">  at &lt;App key=3 &gt; </span><br><span class="line">  at &lt;NuxtRoot&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有時候 <code>node</code> 可能會替換成 <code>content</code>；<code>node</code> 代表的是元素節點，<code>content</code> 則是元素的內容。</p>
+<p>這也引起了我的好奇，究竟 Hydration 是什麼？又為什麼會造成這種情況？</p>
+<h1 id="Hydration-是什麼？"><a href="#Hydration-是什麼？" class="headerlink" title="Hydration 是什麼？"></a>Hydration 是什麼？</h1><p><strong>Hydration</strong> 的中文是水化，代表的是物質與水結合的過程。</p>
+<p>應用在網頁開發中時，指的是將透過 SSR（Server-Side Rendering）提供的靜態頁面與事件綁定，<strong>使其轉變為使用者可與之互動的介面</strong>。<br>在這個過程中，一般會將 Vue、React 等前端框架中的互動功能、又或者是原生的 JavaScript 事件注入靜態網頁中。</p>
+<h1 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h1><h2 id="Nuxt-中的-Hydration-node-mismatch"><a href="#Nuxt-中的-Hydration-node-mismatch" class="headerlink" title="Nuxt 中的 Hydration node mismatch"></a>Nuxt 中的 Hydration node mismatch</h2><h3 id="如何觸發"><a href="#如何觸發" class="headerlink" title="如何觸發"></a>如何觸發</h3><p>要了解原因，首先要知道如何觸發這個問題。</p>
+<p>在 Nuxt 中，寫一個元件，內容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div v-if=&quot;i === 1&quot;&gt;Nuxt&lt;/div&gt;</span><br><span class="line">  &lt;a v-else&gt;Hydration&lt;/a&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">const i = Math.floor(Math.random() * 2);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著啟動開發伺服器，重新整理多次應該就能看到文章開頭的警告訊息。</p>
+<h3 id="為什麼會觸發？"><a href="#為什麼會觸發？" class="headerlink" title="為什麼會觸發？"></a>為什麼會觸發？</h3><p>根據一開始所提，<strong>Hydration</strong> 會在接收到伺服器後端生成的靜態頁面後開始綁定事件到元素上，而 <em>Hydration node mismatch</em> 代表在綁定的過程中，最終呈現的元素與後端生成時的元素不同，所以會跳此警告。</p>
+<h3 id="要如何解決？"><a href="#要如何解決？" class="headerlink" title="要如何解決？"></a>要如何解決？</h3><ol>
+<li><p>拿掉在 <code>v-if</code> 中的完全隨機條件，讓最終呈現的元素與生成時相同即可解決此問題，請注意，這邊提到的是 <strong>完全隨機</strong>條件，一般的判斷如果不會有這種完全隨機的情況是不影響的。</p>
+</li>
+<li><p>使用 <code>&lt;ClientOnly&gt;</code> 元件包裹可能會隨機生成的元素，使其不先透過 SSR 產生靜態頁面，故也能避免 Hydration 的過程。</p>
+</li>
+</ol>
+</div>
 
     
     <section class="post-copyright">
@@ -131,7 +210,9 @@
       <div>
         <!-- <span>Tag(s):</span> -->
         <span class="tag">
-          
+           
+          <a href="/tags/Nuxt/"># Nuxt</a>
+           
         </span>
       </div>
       <div>
@@ -141,6 +222,8 @@
       </div>
     </section>
     <section class="post-nav">
+      
+      <a class="prev" rel="prev" href="/posts/8863/">Vue 的各種雙向綁定</a>
        
       <a class="next" rel="next" href="/posts/15787/">JavaScript 中的 call, apply 與 bind</a>
       
