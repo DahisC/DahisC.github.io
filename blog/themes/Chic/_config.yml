@@ -1,5 +1,5 @@
 # Header
-navname: Dahis's Lighthouse
+navname: Dahisney
 
 # navigatior items
 nav:
@@ -16,7 +16,7 @@ favicon: /favicon.ico
 nickname: Dahis Cheng
 
 ### this variable is MarkDown form.
-description: 試著在前後端的技術汪洋中留下一道光指引自己的 No-end Developer
+description: 因為容易忘記，所以我在這寫下來
 avatar: /image/avatar.jpeg
 
 # main menu navigation
