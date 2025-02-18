@@ -14,7 +14,6 @@ export default {
     });
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
     app.component('Emoji', Emoji);
   },
 } satisfies Theme;

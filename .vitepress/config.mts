@@ -23,7 +23,10 @@ export default defineConfig({
       },
       {
         text: '一些紀錄',
-        items: [{ text: '書單', link: '/articles/others/books' }],
+        items: [
+          { text: '書單', link: '/articles/others/books' },
+          { text: '表情符號', link: '/articles/others/emojis' },
+        ],
       },
     ],
 
