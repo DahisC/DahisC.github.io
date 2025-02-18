@@ -22,7 +22,11 @@ export default defineConfig({
         items: [{ text: '在 VitePress 中新增表符吧', link: '/articles/add-emoji-to-vitepress' }],
       },
       {
-        text: '一些紀錄',
+        text: '日記',
+        items: [{ text: '2024 關西之旅 Day 1', link: '/diary/20241028' }],
+      },
+      {
+        text: '沒有重要到需要開一個分類',
         items: [
           { text: '書單', link: '/articles/others/books' },
           { text: '表情符號', link: '/articles/others/emojis' },
