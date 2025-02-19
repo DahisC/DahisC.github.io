@@ -23,14 +23,24 @@ export default defineConfig({
       },
       {
         text: '日記',
-        items: [{ text: '2024 關西之旅 Day 1', link: '/articles/diary/20241028' }],
+        items: [
+          {
+            text: '2024 關西',
+            collapsed: true,
+            items: [
+              { text: '2024 關西之旅 Day 1', link: '/articles/diary/20241028' },
+              { text: '2024 關西之旅 Day 2', link: '/articles/diary/20241029' },
+            ],
+          },
+        ],
       },
       {
         text: '沒有重要到需要開一個分類',
         items: [
-          { text: '已知用火', link: '/articles/others/memo' },
+          { text: '值得一用的技術', link: '/articles/others/memos' },
           { text: '書單', link: '/articles/others/books' },
           { text: '表情符號', link: '/articles/others/emojis' },
+          { text: '常用連結', link: '/articles/others/links' },
         ],
       },
     ],

@@ -76,7 +76,7 @@ export default defineConfig({
 
 如此一來，當在 VitePress 中使用 `%` 符號包住文字，文字就會作為 `name` 傳入 Emoji 組件的 `props`，並且到 `src/public/emoji/` 路徑底下載入對應檔名的圖片。
 
-## 可以不透過組件的方式載入嗎？
+## 可以不透過組件載入嗎？
 
 既然現在的順序是透過 Markdown 語法偵測 `%` → 載入 Emoji 組件 → 在組件中載入 `img` 元素，那是不是在 `config.mts` 中直接略過載入組件的步驟會更快？
 
