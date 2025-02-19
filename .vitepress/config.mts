@@ -23,11 +23,12 @@ export default defineConfig({
       },
       {
         text: '日記',
-        items: [{ text: '2024 關西之旅 Day 1', link: '/diary/20241028' }],
+        items: [{ text: '2024 關西之旅 Day 1', link: '/articles/diary/20241028' }],
       },
       {
         text: '沒有重要到需要開一個分類',
         items: [
+          { text: '已知用火', link: '/articles/others/memo' },
           { text: '書單', link: '/articles/others/books' },
           { text: '表情符號', link: '/articles/others/emojis' },
         ],
