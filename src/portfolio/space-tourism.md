@@ -1,4 +1,11 @@
-# Space Tourism
+# Space tourism
+
+切版練習
+
+## 連結
+
+- 網址：[Space tourism multi-page website](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3)
+- 線上網址：[Vercel](https://space-tourism-phi-two.vercel.app/)
 
 ## 技術
 - Nuxt 3
@@ -13,33 +20,26 @@
 
 ## 踩到的雷
 
-### Attributify 不支援 bg-[url()] 的寫法
+### Shortcuts 跟 Breakpoints 的命名衝突
 
-雖然 UnoCSS 有使用 Attributify asset，但以下這種寫法卻無法正常在斷點 `tablet` `desktop` 之間切換背景圖片
-
-```vue
-    <main
-      class="p-6 grow-1 bg-[url('@/assets/home/background-home-mobile.jpg')]"
-      tablet="bg-[url('@/assets/home/background-home-tablet.jpg')]"
-      desktop="bg-[url('@/assets/home/background-home-desktop.jpg')]"
-    >
-    </main>
+```ts
+export const presetSpaceTourism: Preset = {
+  name: 'SpaceTourism',
+  theme: {
+    breakpoints: {
+      tablet: '768px',
+      desktop: '1440px',
+    },
+  },
+  shortcuts: {
+    // Typography
+    'desktop-text-preset-2': 'font-bellefair text-[100px]',
+    'tablet-text-preset-2': 'font-bellefair text-[80px]',
+    'mobile-text-preset-1': 'font-bellefair text-[80px]',
+  },
+};
 ```
 
-但如果改成 class 內而不使用屬性的話，相同的寫法是能生效的
+由於為了切合設計稿的 Design System 命名，所以 Typography 我也使用了類似 `mobile` `tablet` 的前綴，breakpoints 的區塊也同樣使用了 `mobile` `tablet`，但這種情況下會導致 UnoCSS 無法正確解析 Shortcuts。　
 
-```vue
-    <main
-      class="p-6 grow-1 bg-[url('@/assets/home/background-home-mobile.jpg')] tablet:bg-[url('@/assets/home/background-home-tablet.jpg')] desktop:bg-[url('@/assets/home/background-home-desktop.jpg')]"
-    >
-```
-
-但如果先將 `bg-[url('@/assets/home/background-home-mobile.jpg')]` 這樣的字串放到 Shortcuts 中再引入的話，可以成功作用；例如在 `uno.config.ts` 中宣告一行 `bg-home-tablet: bg-url[('@/assets/home/background-home-tablet.jpg')]` 後在屬性中引入：
-
-```vue
-    <main
-      class="p-6 grow-1 bg-[url('@/assets/home/background-home-mobile.jpg')]"
-      tablet="bg-home-tablet"
-    >
-    </main>
-```
+我的處理方法是將 breakpoints 的單字改成跟 Shortcuts 不一樣，並且使用原本 UnoCSS 的斷點系統兩個字母的命名規則，將 `tablet` -> `tl` 以避開這個問題
