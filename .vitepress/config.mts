@@ -22,7 +22,8 @@ export default defineConfig({
         items: [{ text: '在 VitePress 中新增表符吧', link: '/articles/add-emoji-to-vitepress' }],
       },
       {
-        text: '日記',
+        text: '日誌',
+        collapsed: true,
         items: [
           {
             text: '2024 關西',
@@ -32,6 +33,16 @@ export default defineConfig({
               { text: '2024 關西之旅 Day 2', link: '/articles/diary/20241029' },
             ],
           },
+          // {
+          //   text: '雜記',
+          //   collapsed: true,
+          //   items: [
+          //     {
+          //       text: '電影',
+          //       items: [{ text: '喵的奇幻漂流', link: '/articles/diary/20250224' }],
+          //     },
+          //   ],
+          // },
         ],
       },
       {
