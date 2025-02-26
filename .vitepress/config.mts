@@ -11,18 +11,25 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '技術',
+        items: [{ text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' }],
+      },
+      {
+        text: '雜記',
+        collapsed: true,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
+          {
+            text: 'Kazu 的語言學習技巧',
+            link: '/articles/memos/kazu-learning-language',
+          },
+          {
+            text: '喵的奇幻漂流',
+            link: '/articles/memos/flow',
+          },
         ],
       },
       {
-        text: '文章',
-        items: [{ text: '在 VitePress 中新增表符吧', link: '/articles/add-emoji-to-vitepress' }],
-      },
-      {
-        text: '日誌',
+        text: '流水帳',
         collapsed: true,
         items: [
           {
@@ -33,20 +40,11 @@ export default defineConfig({
               { text: '2024 關西之旅 Day 2', link: '/articles/diary/20241029' },
             ],
           },
-          // {
-          //   text: '雜記',
-          //   collapsed: true,
-          //   items: [
-          //     {
-          //       text: '電影',
-          //       items: [{ text: '喵的奇幻漂流', link: '/articles/diary/20250224' }],
-          //     },
-          //   ],
-          // },
         ],
       },
+
       {
-        text: '沒有重要到需要開一個分類',
+        text: '不知道取什麼',
         items: [
           { text: '值得一用的技術', link: '/articles/others/memos' },
           { text: '書單', link: '/articles/others/books' },
