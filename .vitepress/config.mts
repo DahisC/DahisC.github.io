@@ -22,26 +22,22 @@ export default defineConfig({
             text: 'Kazu 的語言學習技巧',
             link: '/articles/memos/kazu-learning-language',
           },
-          {
-            text: '喵的奇幻漂流',
-            link: '/articles/memos/flow',
-          },
         ],
       },
-      {
-        text: '流水帳',
-        collapsed: true,
-        items: [
-          {
-            text: '2024 關西',
-            collapsed: true,
-            items: [
-              { text: '2024 關西之旅 Day 1', link: '/articles/diary/20241028' },
-              { text: '2024 關西之旅 Day 2', link: '/articles/diary/20241029' },
-            ],
-          },
-        ],
-      },
+      // {
+      //   text: '流水帳',
+      //   collapsed: true,
+      //   items: [
+      //     {
+      //       text: '2024 關西',
+      //       collapsed: true,
+      //       items: [
+      //         { text: '2024 關西之旅 Day 1', link: '/articles/diary/20241028' },
+      //         { text: '2024 關西之旅 Day 2', link: '/articles/diary/20241029' },
+      //       ],
+      //     },
+      //   ],
+      // },
 
       {
         text: '不知道取什麼',
