@@ -1,7 +1,11 @@
 import { defineConfig } from 'vitepress';
+import UnoCSS from 'unocss/vite';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    plugins: [UnoCSS()],
+  },
   srcDir: './src',
   title: 'Dahisney',
   description: 'A VitePress Site',
@@ -12,7 +16,10 @@ export default defineConfig({
     sidebar: [
       {
         text: '技術',
-        items: [{ text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' }],
+        items: [
+          { text: 'Vue 自訂表單元件與驗證', link: '/articles/tech/custom-component-with-vee-validate' },
+          { text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' },
+        ],
       },
       {
         text: '雜記',

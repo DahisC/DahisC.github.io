@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "vitepress": "^1.6.3"
+  },
+  "devDependencies": {
+    "unocss": "^66.4.2"
   }
 }
