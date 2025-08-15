@@ -17,7 +17,10 @@ export default defineConfig({
       {
         text: '技術',
         items: [
-          { text: 'Vue 自訂表單元件與驗證', link: '/articles/tech/custom-component-with-vee-validate' },
+          {
+            text: 'Vue 自訂表單元件與驗證',
+            link: '/articles/tech/custom-component-with-vee-validate/index',
+          },
           { text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' },
         ],
       },
