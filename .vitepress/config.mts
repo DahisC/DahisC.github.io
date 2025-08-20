@@ -21,6 +21,10 @@ export default defineConfig({
             text: 'Vue 自訂表單元件與驗證',
             link: '/articles/tech/custom-component-with-vee-validate/index',
           },
+          {
+            text: 'Vue 的各種雙向綁定',
+            link: '/articles/tech/about-vue-two-way-bindings',
+          },
           { text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' },
         ],
       },
