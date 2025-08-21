@@ -2,7 +2,9 @@
 outline: deep
 ---
 
-# 前言
+# Vue 的各種雙向綁定
+
+## 前言
 
 在 Vue 中，透過 `v-model` 可以簡單地雙向綁定原生標籤的輸入（事件）與輸出（顯示），如下：
 
@@ -19,7 +21,7 @@ outline: deep
 
 - - -
 
-但如果我們試圖建立一個自訂的 Input 組件（假設這個 Input 可能會有額外的樣式），這個雙向綁定就會失效：
+但如果我們試圖建立一個自訂的 Input 元件（假設這個 Input 可能會有額外的樣式），這個雙向綁定就會失效：
 
 ```vue
 // App.vue
@@ -37,7 +39,7 @@ outline: deep
 </template>
 ```
 
-# 要怎麼重新雙向綁定？
+## 要怎麼重新雙向綁定？
 
 接下來的範例，App.vue 中的內容都不會改變，我們將注意力放在 **CustomInput.vue**。
 
@@ -52,9 +54,9 @@ outline: deep
 </script>
 ```
 
-## 方法一 - 重新雙向綁定
+### 方法一 - 重新雙向綁定
 
-將來自父層的 prop `modelValue` 傳給 input 顯示，並且捕捉 `input` 的輸入事件，透過 `emit` 事件將值更新回上一層組件。
+將來自父層的 prop `modelValue` 傳給 input 顯示，並且捕捉 `input` 的輸入事件，透過 `emit` 事件將值更新回上一層元件。
 
 ```vue
 // CustomInput.vue
@@ -80,7 +82,7 @@ const onInput = (e: any) => { // 這邊的 e 請允許我先用 any
 </script>
 ```
 
-## 方法二 - 透過 getter/setter
+### 方法二 - 透過 getter/setter
 
 這個方式跟方法一有點像，但是稍微縮短了一些程式碼。
 
@@ -119,7 +121,7 @@ const input = computed({
 </script>
 ```
 
-## 方法三 - VueUse 的 useVModel
+### 方法三 - VueUse 的 useVModel
 
 透過別人寫好的函式，我們可以省略自己寫 getter/setter。
 
@@ -164,9 +166,9 @@ return computed<P[K]>({
 
 人要知足。
 
-## 方法四 - Vue 原生的 defineModel
+### 方法四 - Vue 原生的 defineModel
 
-欸？？？？？
+只要一行！！！
 
 > 這個方法在 Vue 3.4 版中已經被更新為 Stable 了，請大家放心使用。
 
@@ -183,6 +185,6 @@ const input = defineModel();
 </script>
 ```
 
-# 結語
+## 結語
 
 ***尤雨溪，我謝謝你。***

@@ -15,8 +15,31 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '技術',
+        text: '作品集',
+        collapsed: true,
         items: [
+          {
+            text: '# 優惠券網站',
+            link: '',
+          },
+        ],
+      },
+      {
+        text: '技術筆記',
+        collapsed: false,
+        items: [
+          {
+            text: '# 實作 Vue Dialog/Modal 元件',
+            link: '/articles/tech/custom-dialog-component/index',
+          },
+          {
+            text: '# Nuxt 4 與上一版的比較',
+            link: '/articles/tech/threejs-memos',
+          },
+          {
+            text: '# Three.js 學習筆記',
+            link: '/articles/tech/threejs-memos',
+          },
           {
             text: 'Vue 自訂表單元件與驗證',
             link: '/articles/tech/custom-component-with-vee-validate/index',
@@ -25,7 +48,7 @@ export default defineConfig({
             text: 'Vue 的各種雙向綁定',
             link: '/articles/tech/about-vue-two-way-bindings',
           },
-          { text: '在 VitePress 中新增表符吧', link: '/articles/tech/add-emoji-to-vitepress' },
+          { text: '在 VitePress 中新增表情符號系統', link: '/articles/tech/add-emoji-to-vitepress' },
         ],
       },
       {
@@ -54,7 +77,8 @@ export default defineConfig({
       // },
 
       {
-        text: '不知道取什麼',
+        text: '其它',
+        collapsed: true,
         items: [
           { text: '值得一用的技術', link: '/articles/others/memos' },
           { text: '書單', link: '/articles/others/books' },

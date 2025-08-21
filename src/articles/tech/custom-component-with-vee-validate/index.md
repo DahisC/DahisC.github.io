@@ -30,11 +30,11 @@ const { handleSubmit, values } = useForm({
 # Vue 自訂表單元件與驗證
 
 ## 前言
-最近在寫專案的時候遇到需要自己刻組件再搭配表單驗證的情況，想透過這篇文章記錄一下問題與解法
+最近在寫專案的時候遇到需要自己刻元件再搭配表單驗證的情況，想透過這篇文章記錄一下問題與解法
 
 不確定自己的寫法是不是最好的，但目前的寫法是我覺得彈性最高的方式，也方便未來根據這套基礎擴充表單元件
 
-<!-- 由於 Vue 3 中常常會需要自己刻一個輸入框之類的組件，最近在寫 Side-Project 的時候剛好遇到組件需要搭配表單驗證的需求，但這個需求是刻完組件之後才發生的，雖然最簡單的方式是直接把整個表單驗證的邏輯寫在組件中，但我認為組件應該要維持最低限度的程式碼，也就是除了樣式之外，外部應該只需要使用 `v-model` 就可以簡單地使用，而且也有可能會有需要用這個輸入框但不需要表單驗證的情況，所以把 vee-validate 的函式引入組件感覺不是一個很好的實作方式 -->
+<!-- 由於 Vue 3 中常常會需要自己刻一個輸入框之類的元件，最近在寫 Side-Project 的時候剛好遇到元件需要搭配表單驗證的需求，但這個需求是刻完元件之後才發生的，雖然最簡單的方式是直接把整個表單驗證的邏輯寫在元件中，但我認為元件應該要維持最低限度的程式碼，也就是除了樣式之外，外部應該只需要使用 `v-model` 就可以簡單地使用，而且也有可能會有需要用這個輸入框但不需要表單驗證的情況，所以把 vee-validate 的函式引入元件感覺不是一個很好的實作方式 -->
 
 ## Vee-Validate
 
@@ -79,7 +79,7 @@ const inputClass = computed(() => ({
 ```
 
 ### 加入表單驗證邏輯之 1
-在建立完一個自訂表單元件之後，一直在思考究竟要不要把 Vee-Validate 的表單驗證邏輯相關程式碼寫在組件之中，畢竟在官方的[範例](https://vee-validate.logaretm.com/v4/guide/composition-api/custom-inputs/)中也是這樣子實作的，只需要在原本的組件中使用 `useField` 並且接受一個 `name` 作為 props 傳入即可
+在建立完一個自訂表單元件之後，一直在思考究竟要不要把 Vee-Validate 的表單驗證邏輯相關程式碼寫在元件之中，畢竟在官方的[範例](https://vee-validate.logaretm.com/v4/guide/composition-api/custom-inputs/)中也是這樣子實作的，只需要在原本的元件中使用 `useField` 並且接受一個 `name` 作為 props 傳入即可
 
 如果按照官方的範例，程式碼應該會變成這樣：
 
@@ -197,7 +197,7 @@ const { handleSubmit, values } = useForm({
 </script>
 ```
 
-在完成上述的組件與 `<script>` 區塊的內容後，可以在 `<template>` 中這樣使用
+在完成上述的元件與 `<script>` 區塊的內容後，可以在 `<template>` 中這樣使用
 
 ```vue
 <FormField label="Label" name="password">
@@ -207,7 +207,7 @@ const { handleSubmit, values } = useForm({
 </FormField>
 ```
 
-`id` 來自於從 `<FormField>` 組件的傳入的 `name`，再透過 Slot props 傳出後綁定至 `id` 上，這樣就能讓 `<label>` 跟自訂的表單元件作動
+`id` 來自於從 `<FormField>` 元件的傳入的 `name`，再透過 Slot props 傳出後綁定至 `id` 上，這樣就能讓 `<label>` 跟自訂的表單元件作動
 
 同時也在表單元件上透過 `v-model` 雙向綁定 Slot props 的 `model`，但由於要保持響應性所以傳出的會是 `Ref`，需要再使用 `.value` 才能正確綁定
 

@@ -1,12 +1,34 @@
+---
+outline: deep
+---
+
+<script setup>
+import CustomDialog from './CustomDialog.vue';
+</script>
+
 # 實作自訂 Dialog
 
 ## 前言
-在前端專案中常常會有需要製作彈出視窗的需求，以往在製作這類型的元件時，最常見的做法是透過 `position: fixed` 將一個 `<div>` 元素釘選到畫面上，再透過 `z-index` 將顯示層級提高以遮擋其它元素，但這種方式比較麻煩的點是需要自己管理 `z-index` 的順序，而最近也有原生的 `<dialog` 標籤可以協助我們做到這件事情了
+在前端專案中常常會有需要製作彈出視窗的需求，以往在製作這類型的元件時，最常見的做法是透過 `position: fixed` 將一個 `<div>` 元素釘選到畫面上，再透過 `z-index` 將顯示層級提高以遮擋其它元素，但這種方式比較麻煩的點是需要自己管理 `z-index` 的順序，而最近也有原生的 `<dialog>` 標籤可以協助我們做到這件事情了 %113%
 
 ::: info
 `<dialog>` 標籤在 2022 年 3 月開始已經廣泛地被各個瀏覽器支援
 :::
 
+## modal 與 non-modal
+在 `<dialog>` 元素開啟時，根據呼叫的方法會區分成以下兩種模式：
+
+1. 透過 `show()` 開啟時為 non-modal
+2. 透過 `showModal()` 開啟時為 modal
+
+- non-modal
+  - 允許使用者繼續跟頁面的其它元素互動
+  - 無 `::backdrop` 偽元素作為背景
+  - 無法透過 Esc 鍵關閉
+- modal
+  - 不允許使用者繼續跟頁面的其它元素互動
+  - 有 `::backdrop` 偽元素作為背景
+  - 可以透過 Esc 鍵關閉
 
 ## 屬性與方法
 
@@ -19,31 +41,13 @@
 `showModal` (method) - 以 modal 的形式開啟
 
 
-## 常見問題
-
-### modal 與 non-modal
-在 `<dialog>` 元素開啟時，根據呼叫的方法會區分成以下兩種模式：
-
-1. 透過 `show()` 開啟時為 non-modal
-2. 透過 `showModal()` 開啟時為 modal
-
-- non-modal
-  - 允許使用者繼續跟頁面的其它元素互動
-  - 無 `::backdrop` 偽元素作為背景
-  - 無法透過 `Esc` 鍵關閉
-- modal
-  - 不允許使用者繼續跟頁面的其它元素互動
-  - 有 `::backdrop` 偽元素作為背景
-  - 可以透過 `Esc` 鍵關閉
-
-
 ## 最佳實作
 
 ### 在 ::backdrop 偽元素上加上背景樣式需求
 但要注意的是 ::backdrop 偽元素只有在透過 `showModal()` 才會出現 
 
 ### 添加 autofocus 屬性到希望使用者第一時間互動的元素上
-在 `<dialog>` 被打開後元素上的 `autofocus` 標籤可以協助定位使用者的關注點，例如下一步等等的按鈕，如果沒有此類按鈕則建議加在關閉按鈕上 
+在 `<dialog>` 被打開後元素上的 `autofocus` 屬性可以協助瀏覽器定位使用者在打開視窗後的關注點，例如下一步等等的按鈕，如果沒有此類按鈕則建議加在關閉按鈕上 
 
 
 ## 在 Vue 中實作元件
@@ -106,4 +110,6 @@ watch(
 </style>
 ```
 
-## 加入
+## 相關連結
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
