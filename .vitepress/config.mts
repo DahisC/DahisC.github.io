@@ -8,7 +8,7 @@ export default defineConfig({
   },
   srcDir: './src',
   title: 'Dahisney',
-  description: 'A VitePress Site',
+  description: '懶惰、沒耐心和傲慢',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: '網誌', link: '/' }],
@@ -28,6 +28,10 @@ export default defineConfig({
         text: '技術筆記',
         collapsed: false,
         items: [
+          {
+            text: '# popover 屬性',
+            link: '',
+          },
           {
             text: '# 實作 Vue Dialog/Modal 元件',
             link: '/articles/tech/custom-dialog-component/index',

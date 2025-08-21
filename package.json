@@ -5,6 +5,7 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
+    "@vueuse/core": "^13.7.0",
     "vee-validate": "^4.15.1",
     "vitepress": "^1.6.3",
     "yup": "^1.7.0"
