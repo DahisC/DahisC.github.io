@@ -51,16 +51,6 @@ const hideOverflowWhenModalExists = ref(false);
 
 `showModal` (method) - 以 modal 的形式開啟
 
-
-## 最佳實作
-
-### 在 ::backdrop 偽元素上加上背景樣式需求
-但要注意的是 ::backdrop 偽元素只有在透過 `showModal()` 才會出現 
-
-### 添加 autofocus 屬性到希望使用者第一時間互動的元素上
-在 `<dialog>` 被打開後元素上的 `autofocus` 屬性可以協助瀏覽器定位使用者在打開視窗後的關注點，例如下一步等等的按鈕，如果沒有此類按鈕則建議加在關閉按鈕上 
-
-
 ## 在 Vue 中實作元件
 
 ### 基礎元件
@@ -237,6 +227,15 @@ dialog::backdrop {
   }
 </script>
 ```
+
+## 最佳實作
+
+### 在 ::backdrop 偽元素上加上背景樣式需求
+但要注意的是 ::backdrop 偽元素只有在透過 `showModal()` 才會出現 
+
+### 添加 autofocus 屬性到希望使用者第一時間互動的元素上
+在 `<dialog>` 被打開後元素上的 `autofocus` 屬性可以協助瀏覽器定位使用者在打開視窗後的關注點，例如下一步等等的按鈕，如果沒有此類按鈕則建議加在關閉按鈕上 
+
 
 ## 相關連結
 

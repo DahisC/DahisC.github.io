@@ -1,13 +1,15 @@
-# Space tourism
+---
+outline: deep
+---
 
-切版練習
+# Space tourism 形象網站切版練習
 
-## 連結
+## 相關連結
 
 - 網址：[Space tourism multi-page website](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3)
 - 線上網址：[Vercel](https://space-tourism-phi-two.vercel.app/)
 
-## 技術
+## 技術選擇
 - Nuxt 3
 - UnoCSS
 

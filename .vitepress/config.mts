@@ -7,11 +7,15 @@ export default defineConfig({
     plugins: [UnoCSS()],
   },
   srcDir: './src',
-  title: 'Dahisney',
+  title: 'Terry Cheng 的技術筆記',
+
   description: '懶惰、沒耐心和傲慢',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: '網誌', link: '/' }],
+    siteTitle: false,
+    logo: '/logo.png',
+
+    socialLinks: [{ icon: 'github', link: 'https://github.com/DahisC' }],
 
     sidebar: [
       {
@@ -19,8 +23,16 @@ export default defineConfig({
         collapsed: true,
         items: [
           {
-            text: '# 優惠券網站',
+            text: '總覽',
             link: '',
+          },
+          {
+            text: 'Space tourism 形象網站切版練習',
+            link: '/articles/portfolios/space-tourism',
+          },
+          {
+            text: '# 肯德基優惠券網站',
+            link: '/articles/portfolios/kfc-coupons-website',
           },
         ],
       },
@@ -33,7 +45,7 @@ export default defineConfig({
             link: '',
           },
           {
-            text: '# 實作 Vue Dialog/Modal 元件',
+            text: '實作 Vue Dialog/Modal 元件',
             link: '/articles/tech/custom-dialog-component/index',
           },
           {
@@ -45,7 +57,7 @@ export default defineConfig({
             link: '/articles/tech/threejs-memos',
           },
           {
-            text: 'Vue 自訂表單元件與驗證',
+            text: '# Vue 自訂表單元件與驗證',
             link: '/articles/tech/custom-component-with-vee-validate/index',
           },
           {
@@ -91,8 +103,6 @@ export default defineConfig({
         ],
       },
     ],
-
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
   },
   markdown: {
     config: (md) => {
