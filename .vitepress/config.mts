@@ -31,7 +31,7 @@ export default defineConfig({
             link: '/articles/portfolios/space-tourism',
           },
           {
-            text: '# 肯德基優惠券網站',
+            text: '肯德基優惠券網站',
             link: '/articles/portfolios/kfc-coupons-website',
           },
         ],
