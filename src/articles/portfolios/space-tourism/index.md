@@ -4,7 +4,9 @@ outline: deep
 
 # Space tourism 形象網站切版練習
 
-## 相關連結
+![](./1.png)
+
+## 介紹
 
 - 網址：[Space tourism multi-page website](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3)
 - 線上網址：[Vercel](https://space-tourism-phi-two.vercel.app/)
@@ -15,10 +17,10 @@ outline: deep
 
 ### UnoCSS
 #### 引入 `reset/tailwind.css`
-  - 由於 UnoCSS 預設不會載入任何類似 Reset.css / Normalize.css 之類的樣式，為了保持不同瀏覽器上元素預設樣式的一致性，我選擇使用 tailwind.css 的 Preflight。比起 Normalize.css，Tailwind 進一步取消了 h1, h2... 等標籤的字型大小，保持這些字型的統一性可以讓我更方便地從頭建立一個網站。
+  - 由於 UnoCSS 預設不會載入任何類似 Reset.css / Normalize.css 之類的樣式，為了保持不同瀏覽器上元素預設樣式的一致性，我選擇使用 tailwind.css 的 Preflight。比起 Normalize.css，Tailwind 進一步取消了 h1, h2... 等標籤的字型大小，保持這些字型的統一性可以讓我更方便地從頭建立一個網站
   
-#### 使用 presetMini 以減少 UnoCSS 體積
-  - （解釋使用 presetMini 的原因）
+<!-- #### 使用 presetMini 以減少 UnoCSS 體積
+  - （解釋使用 presetMini 的原因） -->
 
 ## 踩到的雷
 

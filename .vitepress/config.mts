@@ -24,7 +24,7 @@ export default defineConfig({
         items: [
           {
             text: '總覽',
-            link: '',
+            link: '/articles/portfolios/index',
           },
           {
             text: 'Space tourism 形象網站切版練習',

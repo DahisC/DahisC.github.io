@@ -4,6 +4,8 @@ outline: deep
 
 # 肯德基優惠券網站
 
+![](./1.png)
+
 ## 介紹
 身為一個愛吃垃圾食物的工程師當然也要自己弄一個優惠券網站 %116%
 
@@ -25,11 +27,11 @@ outline: deep
 ### 撈取優惠券
 由於肯德基網站是前後端分離的結構，在[優惠券頁面](https://www.kfcclub.com.tw/coupon)查詢優惠券時會發出以下 API 分別請求資料：
 
-`POST /checkCouponProduct` - 確認優惠券是否可用
-`POST /getEVoucherAPI` -  取得優惠券的基本資料
-`POST /GetQueryFoodDetail` - 取得餐點代碼的相關資料
+1. `POST /checkCouponProduct` - 確認優惠券是否可用
+2. `POST /getEVoucherAPI` -  取得優惠券的基本資料
+3. `POST /GetQueryFoodDetail` - 取得餐點代碼的相關資料
 
-所以我的做法是撰寫[腳本](https://github.com/DahisC/PKCoupon/blob/develop/bot/index.ts)撈取這些優惠券，再存到雲端資料庫上就完成了
+所以我的做法是撰寫[腳本](https://github.com/DahisC/PKCoupon/blob/develop/bot/index.ts)撈取這些優惠券，再存到雲端資料庫 MongoDB Atlas 上
 
 但由於腳本的執行時間與 Github Actions 的免費額度有關，所以針對這部分也有做最佳化
 
@@ -40,10 +42,9 @@ outline: deep
 這時候 Github Actions 就可以很簡單地達到這個需求，所以我寫了一支 [workflow](https://github.com/DahisC/PKCoupon/blob/develop/.github/workflows/bot-schedule.yml) 定時在每天早上 6 點執行專案底下的 `bot.ts` 腳本
 
 
-根據[這篇文章的說明](https://docs.github.com/en/billing/concepts/product-billing/github-actions)，每個 Github 帳號可以免費使用的時間是一個月 2000 分鐘，所以腳本的速度提升勢在必行
-**
-一開始沒注意到有限制，所以撈優惠券的速度是平均**一次約 150 分鐘**
-所以在撈沒幾次之後就達到額度上限被停用了XD
+根據[這篇文章的說明](https://docs.github.com/en/billing/concepts/product-billing/github-actions)，每個 Github 帳號可以免費使用的時間是一個月 2000 分鐘，所以腳本每次的執行時間也需要控制
+
+> 一開始沒注意到有限制導致腳本的執行時間過久，所以在撈沒幾次之後就達到額度上限被停用了XD
 
 ![](./limit-1.png)
 
