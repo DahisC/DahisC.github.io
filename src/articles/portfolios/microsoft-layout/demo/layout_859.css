@@ -1,0 +1,71 @@
+@media (max-width: 859px) {
+  header {
+    justify-content: space-between;
+  }
+  .header__nav-collapse-btn {
+    display: block;
+    order: -2;
+  }
+  .header__nav-collapse-btn > .header__collapse-menu {
+    position: absolute;
+    opacity: 0;
+    z-index: -999;
+  }
+  .header__logo {
+    margin: 0 auto;
+  }
+  .header__menu-products-btn {
+    display: none;
+  }
+  .header__menu-left {
+    display: none;
+  }
+  .header__search-bar {
+    order: -1;
+  }
+  .header__nav-collapse-btn,
+  .header__search-bar,
+  .header__cart,
+  .header__login {
+    text-align: center;
+    flex-basis: 20px;
+  }
+  /* 摺疊選單 */
+  .header__nav-collapse-btn:hover > .header__nav-collapse-menu {
+    display: flex;
+  }
+  /* 第一層 */
+  .header__nav-collapse-menu {
+    width: 100%;
+    background-color: #f2f2f2;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+  }
+  .header__nav-collapse-menu a {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+  .header__nav-collapse-menu li {
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+  }
+  .header__nav-collapse-menu > li:hover > ul {
+    display: flex;
+  }
+  .header__nav-collapse-menu > li:hover > a > img {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+  }
+  .header__nav-collapse-menu > li:last-of-type {
+    border-bottom: 1px solid black;
+  }
+  /* 第二層 */
+  .header__nav-collapse-menu ul {
+    display: none;
+    flex-direction: column;
+    padding-left: 40px;
+  }
+}

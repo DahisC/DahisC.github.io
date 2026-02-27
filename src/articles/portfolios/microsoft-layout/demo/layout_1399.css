@@ -1,0 +1,8 @@
+@media (max-width: 1399px) {
+  .header__search-bar a > span,
+  .header__menu-right a > span,
+  .header__cart a > span,
+  .header__login a > span {
+    display: none;
+  }
+}

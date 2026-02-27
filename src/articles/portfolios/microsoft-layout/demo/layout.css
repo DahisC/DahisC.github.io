@@ -1,0 +1,292 @@
+/* - - - - - Global 全域元素 - - - - - */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0 auto;
+  font-family: "Segoe UI", SegoeUI, "Microsoft JhengHei", 微軟正黑體,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  display: inline-block;
+}
+
+/* - - - - - Custom 自訂 - - - - - */
+.icon-link {
+  display: flex;
+  align-items: center;
+}
+.icon-link > span {
+  margin-right: 5px;
+}
+.icon-link > img {
+  width: 15px;
+  height: 15px;
+}
+.icon-link.mini > img {
+  width: 10px;
+  height: 10px;
+}
+.underline-link {
+  display: flex;
+  flex-direction: column;
+}
+.underline-link:after {
+  content: "";
+  border-bottom: 2px solid transparent;
+  width: 100%;
+}
+.underline-link:hover:after {
+  border-bottom: 2px solid black;
+}
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -10px;
+}
+.card {
+  width: 25%;
+  padding: 0 10px;
+  margin-bottom: 50px;
+}
+.card > h3 {
+  margin-top: 40px;
+  font-weight: 600;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+.card > p {
+  margin-top: 7.5px;
+}
+.card > p,
+.card > a {
+  font-size: 15px;
+}
+.card > a {
+  color: #005da6;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s linear;
+}
+.card > a:hover {
+  text-decoration: none;
+}
+.card > a > span {
+  border-bottom: 2px solid transparent;
+}
+.card > a > span,
+.card > a > img {
+  transition: all 0.15s linear;
+}
+.card > a:hover > span {
+  border-bottom: 2px solid #005da6;
+}
+.card > a:hover > img {
+  transform: translateX(4px);
+}
+
+/* - - - - - layout 排版 - - - - - */
+header,
+section {
+  width: 90%;
+  margin: 0 auto;
+}
+section {
+  margin-bottom: 50px;
+}
+
+/* - - - - - header 頁首 - - - - - */
+header {
+  display: flex;
+  height: 56px;
+  align-items: center;
+}
+.header__nav-collapse-btn {
+  display: none;
+}
+.header__logo {
+  height: 100%;
+}
+.header__logo img {
+  height: 23px;
+  width: auto;
+}
+.header__menu-left {
+  margin-right: auto;
+}
+header a {
+  font-size: 13px;
+  padding: 15px 10px;
+  border: 1px dashed transparent;
+}
+header a:focus {
+  border: 1px dashed black;
+}
+
+/* 產品選單 */
+.header__menu-products-btn:hover > .header__menu-products {
+  display: flex;
+}
+.header__menu-products {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  width: 85%;
+  background-color: #f2f2f2;
+  right: 7.5%;
+  border-bottom: 2px solid black;
+}
+.header__menu-products a:hover {
+  text-decoration: underline;
+}
+.header__menu-products-top h4 {
+  margin: 0;
+  padding: 15px 10px;
+  font-size: 13px;
+}
+.header__menu-products-top {
+  display: flex;
+  flex-wrap: wrap;
+}
+.header__menu-products-bot > a {
+  align-items: baseline;
+}
+
+/* 
+  Q: 要如何才能使此處的 div 在換行後依然靠左且固定為 200px ? 
+  A: 加入缺少數量的空白 div 即可
+*/
+
+.header__menu-products-top > div {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 200px;
+  padding: 10px;
+  flex-grow: 1;
+}
+.header__menu-products-bot {
+  background-color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+}
+.header__menu-products-bot > a {
+  width: fit-content;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+/* Section 2 */
+section:nth-of-type(2) {
+  display: flex;
+  justify-content: center;
+}
+section:nth-of-type(2) > a > img {
+  margin-bottom: 5px;
+}
+section:nth-of-type(2) > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px 30px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid transparent;
+}
+section:nth-of-type(2) > a:hover {
+  text-decoration: underline;
+}
+section:nth-of-type(2) > a:focus {
+  border: 2px solid black;
+  background-color: #e5f0f8;
+  text-decoration: none;
+}
+section:nth-of-type(2) > a > img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Section 3 */
+section:nth-of-type(3) {
+  display: flex;
+}
+
+/* Section 6 */
+section:nth-of-type(6) {
+  display: flex;
+  align-items: center;
+}
+section:nth-of-type(6) > span {
+  font-size: 15px;
+  margin-right: 15px;
+  color: rgba(0, 0, 0, 0.6);
+}
+section:nth-of-type(6) > a:first-of-type {
+  margin-right: 15px;
+}
+section:nth-of-type(6) > a > img {
+  width: 28px;
+  height: 28px;
+}
+
+/* - - - - - footer 頁尾 - - - - - */
+footer {
+  background-color: #f2f2f2;
+  padding: 2.5% 5%;
+}
+footer h4 {
+  font-size: 15px;
+  color: #616161;
+  margin: 0 0 10px 0;
+}
+footer a,
+footer span {
+  font-size: 12px;
+  color: #616161;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer a:not(:last-child) {
+  margin-bottom: 15px;
+}
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer-top > div {
+  width: calc(100% / 6);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding: 0 5px;
+}
+.footer-bot {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer-bot > .localization {
+  margin-right: auto;
+}
+.footer-bot > .localization > a > img {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.footer-bot > .policy > a {
+  margin-right: 10px;
+}
