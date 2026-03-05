@@ -4,7 +4,7 @@ outline: deep
 
 # Amigo 旅行者地圖
 
-![](./1.png)
+
 
 ## 介紹
 
