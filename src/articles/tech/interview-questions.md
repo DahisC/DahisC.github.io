@@ -10,7 +10,7 @@
 
 ## JavaScript
 
-[AbortController]([AbortController](https://developer.mozilla.org/zh-TW/docs/Web/API/AbortController))
+[AbortController](https://developer.mozilla.org/zh-TW/docs/Web/API/AbortController)
 
 ## CSS
 [Sass 7–11 Pattern](https://medium.com/@zalexzuo/sass-7-1-pattern-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A2%BC%E7%B6%AD%E8%AD%B7%E6%95%88%E7%8E%87%E7%9A%84%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88-578b43b71365)
