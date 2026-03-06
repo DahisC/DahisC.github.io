@@ -2,7 +2,7 @@
 
 ## Vue
 
-[\<Suspense\>](https://vuejs.org/guide/built-ins/suspense)
+[Suspense](https://vuejs.org/guide/built-ins/suspense)
 
 ## Nuxt
 
