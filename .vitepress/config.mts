@@ -40,6 +40,10 @@ export default defineConfig({
         text: '技術筆記',
         collapsed: false,
         items: [
+          {
+            text: 'Vue 與資安攻擊',
+            link: '/articles/tech/vue-security',
+          },
           // {
           //   text: '# popover 屬性',
           //   link: '',
@@ -48,16 +52,16 @@ export default defineConfig({
             text: '實作 Vue Dialog/Modal 元件',
             link: '/articles/tech/custom-dialog-component/index',
           },
-          // {
-          //   text: '# Nuxt 4 與上一版的比較',
-          //   link: '',
-          // },
           {
-            text: '# Three.js 學習筆記',
+            text: '# Nuxt 4 與上一版的比較',
+            link: '',
+          },
+          {
+            text: 'Three.js 學習筆記',
             link: '/articles/tech/threejs-memos',
           },
           {
-            text: '# Vue 自訂表單元件與驗證',
+            text: 'Vue 自訂表單元件與驗證',
             link: '/articles/tech/custom-component-with-vee-validate/index',
           },
           {
