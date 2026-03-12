@@ -32,7 +32,7 @@ export default defineConfig({
           },
           {
             text: '肯德基優惠券網站',
-            link: '/articles/portfolios/kfc-coupons',
+            link: '/articles/portfolios/kfc-coupons-website',
           },
         ],
       },
