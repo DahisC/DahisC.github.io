@@ -5,6 +5,7 @@ outline: deep
 # Space tourism 形象網站切版練習
 
 ![](./1.png)
+![](lighthouse.png)
 
 ## 介紹
 
